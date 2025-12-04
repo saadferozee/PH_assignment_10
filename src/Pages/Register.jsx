@@ -96,6 +96,7 @@ const Register = () => {
 
     return (
         <div>
+            <title>AdoptyCo | Register</title>
             <div className='w-full py-[200px]'>
                 <div className='max-w-[500px] mx-auto'>
                     <form onSubmit={handleRegister} className='w-full px-2'>

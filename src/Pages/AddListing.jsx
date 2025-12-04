@@ -39,6 +39,7 @@ const AddListing = () => {
 
     return (
         <div>
+            <title>AdoptyCo | Add Product</title>
             <div className='w-full py-[100px]'>
                 <div className='max-w-[700px] mx-auto'>
                     <form onSubmit={handleAddListing} className='w-full px-2'>
@@ -84,7 +85,7 @@ const AddListing = () => {
 
                             {/* <label className="label">Email</label> */}
                             <input
-                                disabled
+                                readOnly
                                 type="email"
                                 name='email'
                                 className="input px-6 w-full rounded-full"

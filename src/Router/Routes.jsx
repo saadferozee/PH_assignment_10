@@ -12,6 +12,7 @@ import MyOrders from '../Pages/MyOrders';
 import NotFound404 from '../Pages/Error/NotFound404';
 import MyProfile from '../Pages/MyProfile';
 import ProductDetails from '../Pages/ProductDetails';
+import AddOrder from '../Pages/AddOrder';
 
 const router = createBrowserRouter([
     {
@@ -21,7 +22,8 @@ const router = createBrowserRouter([
             { index: true, Component: Home },
             { path: '/listings', Component: PetAndSupplies },
             { path: '/listings/:category', Component: PetAndSupplies },
-            { path: '/product/:id', Component: ProductDetails },
+            { path: '/product/:id', element: <PrivateRoute><ProductDetails></ProductDetails></PrivateRoute> },
+            { path: '/add-order/:id', element: <PrivateRoute><AddOrder></AddOrder></PrivateRoute> },
             { path: '/login', Component: Login },
             { path: '/register', Component: Register },
             { path: '/add-listing', element: <PrivateRoute><AddListing></AddListing></PrivateRoute> },

@@ -60,6 +60,7 @@ const Login = () => {
 
     return (
         <div>
+            <title>AdoptyCo | Login</title>
             <div className='w-full py-[200px]'>
                 <div className='max-w-[500px] mx-auto'>
                     <form onSubmit={handleLogIn} className='w-full px-2'>

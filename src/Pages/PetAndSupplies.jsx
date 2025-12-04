@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../Components/ProductCard';
 import Loading from './Loading';
-import { useParams } from 'react-router';
+import { Link, useParams } from 'react-router';
 
 const PetAndSupplies = () => {
 
@@ -23,9 +23,16 @@ const PetAndSupplies = () => {
 
     return (
         <div className='py-[50px] max-w-[1200px] mx-auto'>
-            <div className='my-3'>
-                <div className='my-2 flex justify-between'>
-                    <h4>Total Listings : {products.length}</h4>
+            <div className='mt-3'>
+                <h1 class="mb-3 flex items-center gap-3 text-2xl lg:text-4xl font-semibold text-[#556B2F]">
+                    <span class="w-3 h-10 bg-[#556B2F] rounded-full"></span>
+                    <span class="px-8 py-2 bg-[#f7f3e9e5] border-4 border-[#556B2F] rounded-full shadow flex flex-col">
+                        <span className='text-[14px]'>If you don't have a cat,</span>
+                        <span className='font-light'>Adopt a Cat First & Then Buy for that Cat</span>
+                    </span>
+                </h1>
+                <div className='m-3 flex justify-between items-baseline'>
+                    <h4 className='mt-auto'>Total Listings : {products.length}</h4>
                     <select
                         defaultValue={category === '' ? 'Filter By Category' : category}
                         onChange={(e) => {
@@ -53,6 +60,9 @@ const PetAndSupplies = () => {
                     </div>
                 )
             }
+            <div className='mt-5 flex justify-center'>
+                <Link to={'/'} className="md:w-[600px] px-4 pt-1.5 pb-1.75 border border-[#F7F3E990] rounded-full bg-[#556B2F] hover:bg-[#556B2F90] text-center text-[#F7F3E9] cursor-pointer">Go Home Page</Link>
+            </div>
         </div>
     );
 };

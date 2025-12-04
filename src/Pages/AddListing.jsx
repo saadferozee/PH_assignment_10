@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import AuthContext from '../Contexts/AuthContext';
 import axios, { AxiosError } from 'axios';
+import Swal from 'sweetalert2';
 
 const AddListing = () => {
 
@@ -27,6 +28,11 @@ const AddListing = () => {
                 if (response.status == 200) {
                     form.reset();
                     // sweet alert
+                    Swal.fire({
+                        title: "Your Listing Added!!",
+                        text: `Name : "${name}", Category : "${category}"`,
+                        icon: "success"
+                    });
                 }
             });
     }

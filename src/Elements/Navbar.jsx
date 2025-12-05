@@ -1,10 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import AuthContext from '../Contexts/AuthContext';
+import { FaCloudMoon } from "react-icons/fa";
+import { FaCloudSun } from "react-icons/fa";
+
 
 const Navbar = () => {
 
     const { user, logOut } = useContext(AuthContext);
+    const [darkTheme, setDarkTheme] = useState(false);
+
+    useEffect(() => {
+        const html = document.documentElement;
+        if (darkTheme) {
+            html.setAttribute("data-theme", "dark")
+        } else {
+            html.setAttribute("data-theme", "light")
+        }
+    }, [darkTheme])
 
     const handleLogOutbutton = e => {
         e.preventDefault();
@@ -58,7 +71,8 @@ const Navbar = () => {
                             }
                         </ul>
                     </div>
-                    <div className="navbar-end">
+                    <div className="navbar-end flex items-center gap-4">
+                        <button className='text-2xl text-[#F7F3E9] cursor-pointer' title='Click to change theme.' onClick={() => setDarkTheme(!darkTheme)}>{darkTheme ? <FaCloudMoon /> : <FaCloudSun />}</button>
                         {
                             user ? (
                                 <div className='flex items-center gap-2'>

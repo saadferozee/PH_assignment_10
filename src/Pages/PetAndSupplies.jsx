@@ -27,9 +27,8 @@ const PetAndSupplies = () => {
             <div className='mt-3'>
                 <h1 className="mb-3 flex items-center gap-3 text-2xl lg:text-4xl font-semibold text-[#556B2F]">
                     <span className="w-3 h-10 bg-[#556B2F] rounded-full"></span>
-                    <span className="px-8 py-2 bg-[#f7f3e9e5] border-4 border-[#556B2F] rounded-full shadow flex flex-col">
-                        <span className='text-[14px]'>If you don't have a cat,</span>
-                        <span className='font-light'>Adopt a Cat First & Then Buy for that Cat</span>
+                    <span className="px-22 py-2 bg-[#f7f3e9e5] border-4 border-[#556B2F] rounded-full shadow flex flex-col">
+                        <span className='text-3xl'>All Pets and Supplies</span>
                     </span>
                 </h1>
                 <div className='m-3 flex justify-between items-baseline'>

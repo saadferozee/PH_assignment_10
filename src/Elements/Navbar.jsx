@@ -4,7 +4,7 @@ import AuthContext from '../Contexts/AuthContext';
 
 const Navbar = () => {
 
-    const { user, logOut, authLoading } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
 
     const handleLogOutbutton = e => {
         e.preventDefault();
@@ -13,7 +13,6 @@ const Navbar = () => {
                 console.log('user logged out successfully')
             }).catch(error => console.log(error));
     }
-    console.log(user.photoURL)
 
     const links = <div className={`flex ${user ? 'gap-1' : 'gap-3'} font-stretch-125% text-[#F7F3E9] text-md`}>
         <NavLink className='px-3 pt-1.5 pb-1.75 rounded-full border border-transparent' to={'/'}>Home</NavLink>

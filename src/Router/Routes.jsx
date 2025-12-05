@@ -13,6 +13,7 @@ import NotFound404 from '../Pages/Error/NotFound404';
 import MyProfile from '../Pages/MyProfile';
 import ProductDetails from '../Pages/ProductDetails';
 import AddOrder from '../Pages/AddOrder';
+import UpdateListing from '../Pages/UpdateLIsting';
 
 const router = createBrowserRouter([
     {
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
             { path: '/register', Component: Register },
             { path: '/add-listing', element: <PrivateRoute><AddListing></AddListing></PrivateRoute> },
             { path: '/my-listings', element: <PrivateRoute><MyListings></MyListings></PrivateRoute> },
+            { path: '/update-listing/:id', element: <PrivateRoute><UpdateListing></UpdateListing></PrivateRoute> },
             { path: '/my-orders', element: <PrivateRoute><MyOrders></MyOrders></PrivateRoute> },
             { path: '/my-profile', element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute> }
         ]

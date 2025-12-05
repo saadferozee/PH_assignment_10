@@ -3,6 +3,7 @@ import AuthContext from '../Contexts/AuthContext';
 import axios from 'axios';
 import Loading from './Loading';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router';
 
 const MyListings = () => {
 
@@ -46,12 +47,11 @@ const MyListings = () => {
                 setLoading(false);
             })
     }, [user])
-    console.log(myListings)
 
     return (
-        <div className='max-w-[1200px] mx-auto'>
+        <div className='max-w-[1200px] min-h-[65vh] mx-auto'>
             <title>AdoptyCo | My Listings</title>
-            <div className='my-[50px] w-full p-5 bg-[#556B2F] rounded-2xl text-[#F7F3E9]'>
+            <div className='my-[50px] w-full p-5 bg-[#556B2F] rounded-2xl shadow-2xl shadow-[#556B2F90] text-[#F7F3E9]'>
                 {
                     loading ? (
                         <Loading viewHeight={40} color={'#F7F3E9'}></Loading>
@@ -96,7 +96,7 @@ const MyListings = () => {
                                                 <td><p>{product?.price == 0 ? "Free" : `${product?.price}tk.`}</p></td>
                                                 <td className='w-[150px]'><p>{product.date}</p></td>
                                                 <th className='flex justify-end gap-2.5'>
-                                                    <button type='button' className="px-4 pt-1.5 pb-1.75 rounded-full bg-[#F7F3E9] font-extralight text-[#556B2F] cursor-pointer">Edit</button>
+                                                    <Link to={`/update-listing/${product?._id}`} className="px-4 pt-1.5 pb-1.75 rounded-full bg-[#F7F3E9] font-extralight text-[#556B2F] cursor-pointer">Edit</Link>
                                                     <button type='button' onClick={() => handleDelete(product?._id)} className="px-4 pt-1.5 pb-1.75 rounded-full bg-[#F7F3E9] font-extralight text-[#ff0000] cursor-pointer">Delete</button>
                                                 </th>
                                             </tr>

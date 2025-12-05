@@ -4,7 +4,7 @@ import AuthContext from '../Contexts/AuthContext';
 
 const Navbar = () => {
 
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut, authLoading } = useContext(AuthContext);
 
     const handleLogOutbutton = e => {
         e.preventDefault();
@@ -13,6 +13,7 @@ const Navbar = () => {
                 console.log('user logged out successfully')
             }).catch(error => console.log(error));
     }
+    console.log(user.photoURL)
 
     const links = <div className={`flex ${user ? 'gap-1' : 'gap-3'} font-stretch-125% text-[#F7F3E9] text-md`}>
         <NavLink className='px-3 pt-1.5 pb-1.75 rounded-full border border-transparent' to={'/'}>Home</NavLink>
@@ -65,9 +66,9 @@ const Navbar = () => {
                                     <a href="/my-profile">
                                         {
                                             user.photoURL ? (
-                                                <img title={`click to go Profile of User: ${user.displayName}`} width={40} className='border-2 border-[#F7F3E9] p-0.5 rounded-full' src={`${user.photoURL}`} alt="DP" />
+                                                <img title={`click to go Profile of User: ${user.displayName}`} width={40} height={40} className='border-2 border-[#F7F3E9] p-0.5 rounded-full' src={`${user.photoURL ? user.photoURL : 'https://img.icons8.com/ink/96/f7f3e9/user-male-circle.png'}`} alt="DP" />
                                             ) : (
-                                                <img width={40} className='rounded-full' src={'https://img.icons8.com/ink/96/f7f3e9/user-male-circle.png'} alt="DP" />
+                                                <img title={`click to go Profile of User: ${user.displayName}`} width={40} className='rounded-full' src={'https://img.icons8.com/ink/96/f7f3e9/user-male-circle.png'} alt="DP" />
                                             )
                                         }
                                     </a>

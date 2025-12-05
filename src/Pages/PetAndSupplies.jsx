@@ -53,7 +53,7 @@ const PetAndSupplies = () => {
                 </div>
             </div>
             {
-                loading ? <Loading viewHeight="70"></Loading> : (
+                loading ? <Loading viewHeight="70" color={'#556B2F'}></Loading> : (
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                         {
                             products.map(product => <ProductCard key={product._id} product={product}></ProductCard>)

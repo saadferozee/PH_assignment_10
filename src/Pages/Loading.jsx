@@ -1,7 +1,7 @@
 import React from 'react';
 import { ProgressBar } from 'react-loader-spinner'
 
-const Loading = ({ viewHeight }) => {
+const Loading = ({ viewHeight, color }) => {
 
     return (
         <div className={`w-full flex items-center justify-center`} style={{ height: `${parseInt(viewHeight)}vh` }}>
@@ -9,8 +9,8 @@ const Loading = ({ viewHeight }) => {
                 visible={true}
                 height="120"
                 width="120"
-                borderColor='#556B2F'
-                barColor="#556B2F"
+                borderColor={color}
+                barColor={color}
                 ariaLabel="progress-bar-loading"
                 wrapperStyle={{}}
                 wrapperClass=""

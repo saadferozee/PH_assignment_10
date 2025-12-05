@@ -26,7 +26,7 @@ const ProductDetails = () => {
             <div className=' min-h-[70vh] flex flex-col items-center'>
                 <div className='mx-[3%] lg:min-w-[700px] my-8 lg:my-auto p-[2%] border-2 border-[#F7F3E995] rounded-4xl bg-[#556B2F45] flex flex-col lg:flex-row gap-10'>
                     {
-                        loading ? <Loading viewHeight={40}></Loading> : (
+                        loading ? <Loading viewHeight={40} color={'#556B2F'}></Loading> : (
                             <>
                                 <div className='w-full lg:w-[45%]'>
                                     <img className='rounded-2xl w-full h-full object-cover' src={product?.photoURL} alt="" />

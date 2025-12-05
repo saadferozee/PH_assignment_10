@@ -10,7 +10,7 @@ const PrivateRoute = ({ children }) => {
 
     if (authLoading) {
         return (
-            <Loading viewHeight={70}></Loading>
+            <Loading viewHeight={70} color={'#556B2F'}></Loading>
         )
     }
 

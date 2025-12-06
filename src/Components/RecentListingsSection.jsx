@@ -19,7 +19,7 @@ const RecentListingsSection = () => {
     }, [])
 
     return (
-        <div className='py-6 bg-[#556B2F35]'>
+        <div className='py-10 bg-[#556B2F35]'>
             <div className='max-w-[1200px] mx-auto'>
                 <Headline typo={'Recently Added'}></Headline>
 

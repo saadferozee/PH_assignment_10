@@ -13,7 +13,7 @@ const PetAndSupplies = () => {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        axios.get(category ? `http://localhost:3568/listings/${category}` : 'http://localhost:3568/listings')
+        axios.get(category ? `https://adoptyco-r0iy7b452-saad-ferozees-projects.vercel.app/listings/${category}` : 'https://adoptyco-r0iy7b452-saad-ferozees-projects.vercel.app/listings')
             .then(response => {
                 setProducts(response.data);
                 setLoading(false);
@@ -25,10 +25,10 @@ const PetAndSupplies = () => {
         <div className='py-[50px] max-w-[1200px] mx-auto'>
             <title>AdoptyCo | Pet & Supplies</title>
             <div className='mt-3'>
-                <h1 className="mb-3 flex items-center gap-3 text-2xl lg:text-4xl font-semibold text-[#556B2F]">
+                <h1 className="mb-3 ml-2 lg:ml-0 flex items-center gap-3 text-2xl lg:text-4xl font-semibold text-[#556B2F]">
                     <span className="w-3 h-10 bg-[#556B2F] rounded-full"></span>
-                    <span className="px-22 py-2 bg-[#f7f3e9e5] border-4 border-[#556B2F] rounded-full shadow flex flex-col">
-                        <span className='text-3xl'>All Pets and Supplies</span>
+                    <span className="px-6 lg:px-22 py-2 bg-[#f7f3e9e5] border-4 border-[#556B2F] rounded-full shadow flex flex-col">
+                        <span className='text-md lg:text-3xl'>All Pets and Supplies</span>
                     </span>
                 </h1>
                 <div className='m-3 flex justify-between items-baseline'>
@@ -53,7 +53,7 @@ const PetAndSupplies = () => {
             </div>
             {
                 loading ? <Loading viewHeight="70" color={'#556B2F'}></Loading> : (
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+                    <div className='px-4 lg:px-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                         {
                             products.map(product => <ProductCard key={product._id} product={product}></ProductCard>)
                         }

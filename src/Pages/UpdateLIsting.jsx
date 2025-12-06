@@ -25,7 +25,7 @@ const UpdateListing = () => {
         const date = form.date.value;
         const updatedData = { name, category, price, photoURL, description, location, date }
 
-        axios.put(`http://localhost:3568/listings/update/${id}`, updatedData)
+        axios.put(`https://adoptyco.vercel.app/listings/update/${id}`, updatedData)
             .then(response => {
                 console.log(response.data);
                 Swal.fire({
@@ -38,7 +38,7 @@ const UpdateListing = () => {
     }
 
     useEffect(() => {
-        axios.get(`http://localhost:3568/listings/product/${id}`)
+        axios.get(`https://adoptyco-r0iy7b452-saad-ferozees-projects.vercel.app/listings/product/${id}`)
             .then(response => {
                 setProduct(response.data);
                 setLoading(false);
@@ -60,18 +60,18 @@ const UpdateListing = () => {
                                         <>
                                             <h2 className='text-3xl text-[#F7F3E9]'>{isPet ? 'Update Pet Details' : 'Update Product Details'}</h2>
 
-                                            <div className='flex justify-between'>
+                                            <div className='lg:flex justify-between'>
                                                 <label className="label text-[#F7F3E9]">{isPet ? 'Pet Name :' : 'Product Name :'}</label>
-                                                <input type="text" name='name' className="input px-6 w-[80%] rounded-full" defaultValue={product?.name} />
+                                                <input type="text" name='name' className="input px-6 lg:w-[80%] rounded-full" defaultValue={product?.name} />
                                             </div>
 
-                                            <div className='flex justify-between'>
+                                            <div className='lg:flex justify-between'>
                                                 <label className="label text-[#F7F3E9]">Category :</label>
                                                 <select
                                                     name='category'
                                                     onChange={(e) => e.target.value === 'pet' ? setIsPet(true) : setIsPet(false)}
                                                     defaultValue={product?.category}
-                                                    className="select w-[80%] px-6 rounded-full"
+                                                    className="select lg:w-[80%] px-6 rounded-full"
                                                 >
                                                     <option disabled={true}>Select a Category</option>
                                                     <option value='pet'>Pet</option>
@@ -81,45 +81,45 @@ const UpdateListing = () => {
                                                 </select>
                                             </div>
 
-                                            <div className='flex justify-between'>
+                                            <div className='lg:flex justify-between'>
                                                 <label className="label text-[#F7F3E9]">Price (BDT) :</label>
                                                 <input
                                                     name='price'
-                                                    className="input px-6 w-[80%] rounded-full"
+                                                    className="input px-6 lg:w-[80%] rounded-full"
                                                     defaultValue={product?.price}
                                                     readOnly={isPet}
                                                 />
                                             </div>
 
-                                            <div className='flex justify-between'>
+                                            <div className='lg:flex justify-between'>
                                                 <label className="label text-[#F7F3E9]">Photo URL :</label>
-                                                <input type="text" name='photoURL' className="input px-6 w-[80%] rounded-full" defaultValue={product?.photoURL} />
+                                                <input type="text" name='photoURL' className="input px-6 lg:w-[80%] rounded-full" defaultValue={product?.photoURL} />
                                             </div>
 
-                                            <div className='flex justify-between'>
+                                            <div className='lg:flex justify-between'>
                                                 <label className="label text-[#F7F3E9]">Description :</label>
-                                                <textarea type="text" name='description' className="textarea h-fit px-6 w-[80%] rounded-3xl" defaultValue={product?.description} placeholder='Write Additional Note' />
+                                                <textarea type="text" name='description' className="textarea h-fit px-6 lg:w-[80%] rounded-3xl" defaultValue={product?.description} placeholder='Write Additional Note' />
                                             </div>
 
-                                            <div className='flex justify-between'>
+                                            <div className='lg:flex justify-between'>
                                                 <label className="label text-[#F7F3E9]">Location :</label>
-                                                <input type="text" name='location' className="input px-6 w-[80%] rounded-full" defaultValue={product?.location} />
+                                                <input type="text" name='location' className="input px-6 lg:w-[80%] rounded-full" defaultValue={product?.location} />
                                             </div>
 
-                                            <div className='flex justify-between'>
+                                            <div className='lg:flex justify-between'>
                                                 <label className="label text-[#F7F3E9]">Date (pickup) :</label>
-                                                <input type="date" name='date' className="input px-6 w-[80%] rounded-full" defaultValue={product?.date} placeholder="Date (Pick Up)" required />
+                                                <input type="date" name='date' className="input px-6 lg:w-[80%] rounded-full" defaultValue={product?.date} placeholder="Date (Pick Up)" required />
                                             </div>
 
-                                            <div className='flex justify-between'>
+                                            <div className='flex flex-col-reverse lg:flex-row justify-between'>
                                                 <button
                                                     type='button'
                                                     onClick={() => window.history.back()}
-                                                    className="btn w-[18%] mt-2 bg-[#F7F3E999] hover:bg-[#F7F3E985] shadow-[#F7F3E9] border-transparent rounded-full text-[#556B2F]"
+                                                    className="btn lg:w-[18%] mt-2 bg-[#F7F3E999] hover:bg-[#F7F3E985] shadow-[#F7F3E9] border-transparent rounded-full text-[#556B2F]"
                                                 >Cancel</button>
                                                 <button
                                                     type='submit'
-                                                    className="btn w-[80%] mt-2 bg-[#F7F3E9] hover:bg-[#F7F3E9c0] shadow-[#F7F3E9] border-transparent rounded-full text-[#556B2F]"
+                                                    className="btn lg:w-[80%] mt-2 bg-[#F7F3E9] hover:bg-[#F7F3E9c0] shadow-[#F7F3E9] border-transparent rounded-full text-[#556B2F]"
                                                 >{isPet ? 'Update Pet Details' : 'Update Product Details'}</button>
                                             </div>
                                         </>

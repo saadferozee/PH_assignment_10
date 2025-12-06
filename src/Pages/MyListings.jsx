@@ -22,7 +22,7 @@ const MyListings = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:3568/listings/delete/${id}`)
+                axios.delete(`https://adoptyco.vercel.app/listings/delete/${id}`)
                     .then(response => {
                         if (response.data.deletedCount == 1) {
                             const filteredListings = myListings.filter(product => product?._id !== id);
@@ -41,7 +41,7 @@ const MyListings = () => {
     }
 
     useEffect(() => {
-        axios.get(`http://localhost:3568/listings/myListings/${user?.email}`)
+        axios.get(`https://adoptyco-7rpf8q1b5-saad-ferozees-projects.vercel.app/listings/myListings/${user?.email}`)
             .then(response => {
                 setMyListings(response.data);
                 setLoading(false);
@@ -50,14 +50,14 @@ const MyListings = () => {
 
     return (
         <div className='max-w-[1200px] min-h-[65vh] mx-auto pt-[50px]'>
-            <h1 className="mb-3 flex items-center gap-3 text-2xl lg:text-4xl font-semibold text-[#556B2F]">
+            <h1 className="mb-3 ml-2 lg:ml-0 flex items-center gap-3 text-2xl lg:text-4xl font-semibold text-[#556B2F]">
                 <span className="w-3 h-10 bg-[#556B2F] rounded-full"></span>
                 <span className="px-8 py-2 bg-[#f7f3e9e5] border-4 border-[#556B2F] rounded-full shadow flex flex-col">
-                    <span className='text-xl'>My Orders</span>
+                    <span className='text-xl'>My Listings</span>
                 </span>
             </h1>
             <title>AdoptyCo | My Listings</title>
-            <div className='mb-[50px] w-full p-5 bg-[#556B2F] rounded-2xl shadow-2xl shadow-[#556B2F90] text-[#F7F3E9]'>
+            <div className='mb-[50px] mx-2 lg:mx-0 w-auto p-3 lg:p-5 bg-[#556B2F] rounded-2xl shadow-2xl shadow-[#556B2F90] text-[#F7F3E9]'>
                 {
                     loading ? (
                         <Loading viewHeight={40} color={'#F7F3E9'}></Loading>

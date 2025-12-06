@@ -38,42 +38,42 @@ const HeroSection = () => {
                     >
                         <SwiperSlide className=' flex flex-col justify-center items-center'>
                             <div className='h-fit'>
-                                <h1 className='mx-[2.11%] mb-1.5 pb-1.25 font-semibold font-stretched text-xs sm:text-2xl text-[#556B2F] text-shadow-lg text-shadow-[#00000010] text-center'>Find Your Furry Friend Today!</h1>
+                                <h1 className='mx-[2.11%] mb-1.5 pb-1.25 font-semibold font-stretched text-xs sm:text-2xl text-[#556B2F] text-shadow-lg text-shadow-[#00000010] dark:text-shadow-[#F7F3E920] text-center'>Find Your Furry Friend Today!</h1>
                                 {/* <hr className='my-2 mx-[3%] text-shadow-lg' /> */}
                                 <img className='m-[2%] my-0 h-[300px] md:h-[600px] w-[96%] object-cover rounded-lg' src="https://i.postimg.cc/d3kC4P2b/imgi-200-pexels-photo-7726311.jpg" alt="dog taking shower with his master" />
                             </div>
                         </SwiperSlide>
                         <SwiperSlide className='flex flex-col justify-center items-center'>
                             <div className='h-fit'>
-                                <h1 className='mx-[2.11%] mb-1.5 pb-1.25 font-semibold font-stretched text-xs sm:text-2xl text-[#556B2F] text-shadow-lg text-shadow-[#00000010] text-center'>Adopt, Don't Shop - Give a Pet a Home</h1>
+                                <h1 className='mx-[2.11%] mb-1.5 pb-1.25 font-semibold font-stretched text-xs sm:text-2xl text-[#556B2F] text-shadow-lg text-shadow-[#00000010] dark:text-shadow-[#F7F3E920] text-center'>Adopt, Don't Shop - Give a Pet a Home</h1>
                                 {/* <hr className='my-2 mx-[3%] text-shadow-lg' /> */}
                                 <img className='m-[2%] my-0 h-[300px] md:h-[600px] w-[96%] object-cover rounded-lg' src="https://i.postimg.cc/WpBXFTcw/imgi-204-DC6F7787-9BE9-4BFF-ADCA-59F1C0BF18D6-da82e18b.jpg" alt="young lady playing with dog" />
                             </div>
                         </SwiperSlide>
                         <SwiperSlide className='flex flex-col justify-center items-center'>
                             <div className='h-fit'>
-                                <h1 className='mx-[2.11%] mb-1.5 pb-1.25 font-semibold font-stretched text-xs sm:text-2xl text-[#556B2F] text-shadow-lg text-shadow-[#00000010] text-center'>Because Every Pet Deserves Love and Care</h1>
+                                <h1 className='mx-[2.11%] mb-1.5 pb-1.25 font-semibold font-stretched text-xs sm:text-2xl text-[#556B2F] text-shadow-lg text-shadow-[#00000010] dark:text-shadow-[#F7F3E920] text-center'>Because Every Pet Deserves Love and Care</h1>
                                 {/* <hr className='my-2 mx-[3%] text-shadow-lg' /> */}
                                 <img className='m-[2%] my-0 h-[300px] md:h-[600px] w-[96%] object-cover rounded-lg' src="https://i.postimg.cc/HWw7zg7z/imgi-169-Getty-Images-470406795.jpg" alt="dog taking shower by car washer hose pipe" />
                             </div>
                         </SwiperSlide>
                         <SwiperSlide className='flex flex-col justify-center items-center'>
                             <div className='h-fit'>
-                                <h1 className='mx-[2.11%] mb-1.5 pb-1.25 font-semibold font-stretched text-xs sm:text-2xl text-[#556B2F] text-shadow-lg text-shadow-[#00000010] text-center'>Find Your Furry Friend Today!</h1>
+                                <h1 className='mx-[2.11%] mb-1.5 pb-1.25 font-semibold font-stretched text-xs sm:text-2xl text-[#556B2F] text-shadow-lg text-shadow-[#00000010] dark:text-shadow-[#F7F3E920] text-center'>Find Your Furry Friend Today!</h1>
                                 {/* <hr className='my-2 mx-[3%] text-shadow-lg' /> */}
                                 <img className='m-[2%] my-0 h-[300px] md:h-[600px] w-[96%] object-cover rounded-lg' src="https://i.postimg.cc/d3kC4P2b/imgi-200-pexels-photo-7726311.jpg" alt="dog taking shower with his master" />
                             </div>
                         </SwiperSlide>
                         <SwiperSlide className='flex flex-col justify-center items-center'>
                             <div className='h-fit'>
-                                <h1 className='mx-[2.11%] mb-1.5 pb-1.25 font-semibold font-stretched text-xs sm:text-2xl text-[#556B2F] text-shadow-lg text-shadow-[#00000010] text-center'>Adopt, Don't Shop - Give a Pet a Home</h1>
+                                <h1 className='mx-[2.11%] mb-1.5 pb-1.25 font-semibold font-stretched text-xs sm:text-2xl text-[#556B2F] text-shadow-lg text-shadow-[#00000010] dark:text-shadow-[#F7F3E920] text-center'>Adopt, Don't Shop - Give a Pet a Home</h1>
                                 {/* <hr className='my-2 mx-[3%] text-shadow-lg' /> */}
                                 <img className='m-[2%] my-0 h-[300px] md:h-[600px] w-[96%] object-cover rounded-lg' src="https://i.postimg.cc/WpBXFTcw/imgi-204-DC6F7787-9BE9-4BFF-ADCA-59F1C0BF18D6-da82e18b.jpg" alt="young lady playing with dog" />
                             </div>
                         </SwiperSlide>
                         <SwiperSlide className='flex flex-col justify-center items-center'>
                             <div className='h-fit'>
-                                <h1 className='mx-[2.11%] mb-1.5 pb-1.25 font-semibold font-stretched text-xs sm:text-2xl text-[#556B2F] text-shadow-lg text-shadow-[#00000010] text-center'>Because Every Pet Deserves Love and Care</h1>
+                                <h1 className='mx-[2.11%] mb-1.5 pb-1.25 font-semibold font-stretched text-xs sm:text-2xl text-[#556B2F] text-shadow-lg text-shadow-[#00000010] dark:text-shadow-[#F7F3E920] text-center'>Because Every Pet Deserves Love and Care</h1>
                                 {/* <hr className='my-2 mx-[3%] text-shadow-lg' /> */}
                                 <img className='m-[2%] my-0 h-[300px] md:h-[600px] w-[96%] object-cover rounded-lg' src="https://i.postimg.cc/HWw7zg7z/imgi-169-Getty-Images-470406795.jpg" alt="dog taking shower by car washer hose pipe" />
                             </div>

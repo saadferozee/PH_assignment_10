@@ -13,7 +13,7 @@ const PetAndSupplies = () => {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        axios.get(category ? `https://adoptyco-r0iy7b452-saad-ferozees-projects.vercel.app/listings/${category}` : 'https://adoptyco-r0iy7b452-saad-ferozees-projects.vercel.app/listings')
+        axios.get(category ? `https://adoptyco.vercel.app/listings/${category}` : 'https://adoptyco.vercel.app/listings')
             .then(response => {
                 setProducts(response.data);
                 setLoading(false);

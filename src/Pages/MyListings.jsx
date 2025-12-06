@@ -41,7 +41,7 @@ const MyListings = () => {
     }
 
     useEffect(() => {
-        axios.get(`https://adoptyco-7rpf8q1b5-saad-ferozees-projects.vercel.app/listings/myListings/${user?.email}`)
+        axios.get(`https://adoptyco.vercel.app/listings/myListings/${user?.email}`)
             .then(response => {
                 setMyListings(response.data);
                 setLoading(false);

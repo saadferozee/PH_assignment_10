@@ -23,7 +23,7 @@ const AddListing = () => {
 
         const data = { name, category, price, location, description, photoURL, date, email }
 
-        axios.post('https://adoptyco-7rpf8q1b5-saad-ferozees-projects.vercel.app/listings', data)
+        axios.post('https://adoptyco.vercel.app/listings', data)
             .then(response => {
                 if (response.status == 200) {
                     form.reset();

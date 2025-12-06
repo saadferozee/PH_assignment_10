@@ -47,7 +47,7 @@ const AddOrder = () => {
     };
 
     useEffect(() => {
-        axios.get(`https://adoptyco-r0iy7b452-saad-ferozees-projects.vercel.app/listings/product/${id}`)
+        axios.get(`https://adoptyco.vercel.app/listings/product/${id}`)
             .then(response => {
                 setProduct(response.data);
                 setIsPet(response.data.category === 'pet' ? true : false);

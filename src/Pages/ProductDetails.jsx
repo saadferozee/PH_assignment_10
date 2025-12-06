@@ -12,7 +12,7 @@ const ProductDetails = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get(`https://adoptyco-7rpf8q1b5-saad-ferozees-projects.vercel.app/listings/product/${id}`)
+        axios.get(`https://adoptyco.vercel.app/listings/product/${id}`)
             .then(response => {
                 setProduct(response.data);
                 setLoading(false);

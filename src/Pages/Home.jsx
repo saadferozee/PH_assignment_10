@@ -7,7 +7,7 @@ import PetHeroSection from '../Components/PetHeroSection';
 
 const Home = () => {
     return (
-        <div className='max-w-[1200px] mx-auto'>
+        <div className=''>
             <title>AdoptyCo | Home</title>
             <div>
                 <HeroSection></HeroSection>

@@ -10,12 +10,14 @@ const ProductDetails = () => {
     const { id } = useParams();
     const [product, setProduct] = useState({});
     const [loading, setLoading] = useState(true);
+    const [isPet, setIsPet] = useState(false);
 
     useEffect(() => {
         axios.get(`https://adoptyco.vercel.app/listings/product/${id}`)
             .then(response => {
                 setProduct(response.data);
                 setLoading(false);
+                setIsPet(response.data.category === 'pet' ? true : false);
             })
             .catch(error => console.log(error))
     }, [id])
@@ -54,7 +56,7 @@ const ProductDetails = () => {
                                     <hr className='my-6 opacity-40 border' />
                                     <h3 className='text-xl font-bold opacity-70'><span className='text-[12px]'>Shop Owner's Email: </span>{product?.email}</h3>
                                     <h3 className='text-xl font-bold opacity-70'><span className='text-[12px]'>Shipped From: </span>{product?.location}</h3>
-                                    <Link to={`/add-order/${product?._id}`} className='mt-8 px-8 pt-1.5 pb-1.75 border border-[#F7F3E990] rounded-full bg-[#556B2F] hover:bg-[#556B2F90] text-center text-[#F7F3E9] text-xl cursor-pointer'>Place an Order<span className='hidden md:inline'> on your doorstep</span></Link>
+                                    <Link to={`/add-order/${product?._id}`} className='mt-8 px-8 pt-1.5 pb-1.75 border border-[#F7F3E990] rounded-full bg-[#556B2F] hover:bg-[#556B2F90] text-center text-[#F7F3E9] text-xl cursor-pointer'>{ isPet ? 'Adopt It, and deliver ' : 'Place an Order '}<span className='hidden md:inline'>{isPet ? 'to' : 'on'} your doorstep</span></Link>
                                 </div>
                             </>
                         )

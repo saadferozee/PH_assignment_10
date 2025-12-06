@@ -1,8 +1,10 @@
 import React from 'react';
+import Headline from '../Elements/Headline';
 
 const CategorySection = () => {
     return (
-        <div>
+        <div className='max-w-[1200px] mx-auto my-14'>
+            <Headline typo={'Adopting and Shopping, Together'}></Headline>
             <div className='p-4 lg:p-0 grid grid-cols-2 lg:grid-cols-4 gap-3'>
                 <a
                 href='/listings/pet'                    

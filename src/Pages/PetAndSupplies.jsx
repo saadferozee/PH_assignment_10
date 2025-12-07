@@ -49,22 +49,22 @@ const PetAndSupplies = () => {
                         <span className='text-md lg:text-3xl'>All Pets and Supplies</span>
                     </span>
                 </h1>
-                <div className='m-3 flex justify-between items-baseline'>
+                <div className='m-3 flex flex-col md:flex-row justify-between items-baseline'>
                     <h4 className='mt-auto'>Total Listings : {products.length}</h4>
-                    <div className='flex items-center gap-3'>
-                        <div className='flex items-center gap-2'>
+                    <div className='w-auto ml-auto flex flex-col md:flex-row items-center gap-1 md:gap-3'>
+                        <div className='w-full flex items-center gap-2'>
                             {
                                 searchOpen && <input
-                                    className='w-[200px] py-1 px-5 max-h-[30px] rounded-full border-2 border-[#556B2F90]  focus:outline-none'
+                                    className='w-[300px] py-1.5 px-5 max-h-[30px] rounded-full border-2 border-[#556B2F90] focus:outline-none font-light'
                                     type="text"
                                     name="search"
-                                    placeholder='Search Apps'
+                                    placeholder='Search Products or Pet'
                                     defaultValue={searchInput}
                                     onChange={handleSearch}
                                 />
                             }
                             <button
-                                className={`text-3xl text-[#556B2F] transition-transform duration-300 ${searchOpen ? "rotate-360 scale-110" : "rotate-0 scale-100"}`}
+                                className={`ml-auto text-[25px] text-[#556B2F] transition-transform duration-300 ${searchOpen ? "rotate-360 scale-110" : "rotate-0 scale-100"}`}
                                 onClick={() => setSearchOpen(!searchOpen)}
                             >
                                 {searchOpen ? <LuSearchX /> : <LuSearch />}
@@ -77,7 +77,7 @@ const PetAndSupplies = () => {
                                 setCategory(e.target.value);
                             }}
                             // style={{ paddingTop: '5px' , paddingBottom: '5px', paddingLeft: '10px', paddingRight: '10px', }}
-                            className="select w-[200px] px-5 max-h-[30px] rounded-full active:border-none border-2 border-[#556B2F90] dark:border-[#F7F3E990]"
+                            className="select ml-auto w-[200px] pr-8 px-5 max-h-[30px] rounded-full active:border-none border-2 border-[#556B2F90] dark:border-[#F7F3E990]"
                         >
                             <option disabled={true}>Filter By Category </option>
                             <option value={'pet'}>Pet</option>

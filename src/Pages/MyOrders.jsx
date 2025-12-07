@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../Contexts/AuthContext';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 import Loading from './Loading';
 
 const MyOrders = () => {
@@ -8,6 +10,26 @@ const MyOrders = () => {
     const { user } = useContext(AuthContext);
     const [myOrders, setMyOrders] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    const handleDownloadPDF = () => {
+        const doc = new jsPDF();
+        const columns = [
+            { header: "Buyer", dataKey: "buyerName" },
+            { header: "Product", dataKey: "productName" },
+            { header: "Phone", dataKey: "phoneNumber" },
+            { header: "Qty", dataKey: "quantity" },
+            { header: "Price", dataKey: "price" },
+            { header: "Date", dataKey: "date" },
+        ];
+        autoTable( doc, {
+            columns: columns,
+            body: myOrders,
+            theme: 'striped',
+            styles: { fontSize: 10, cellPadding: 3 },
+            headStyles: { fillColor: [50, 50, 50], textColor: 255 }
+        });
+        doc.save("orders.pdf");
+    }
 
     useEffect(() => {
         axios.get(`https://adoptyco.vercel.app/orders/${user?.email}`)
@@ -88,7 +110,9 @@ const MyOrders = () => {
                         </div>
                     )
                 }
-
+                <div className="flex justify-end text-center mt-5">
+                    <button type='button' disabled={loading || myOrders.length < 1} onClick={handleDownloadPDF} className="px-4 pt-1.25 pb-1.5 border border-[#F7F3E9] rounded-full bg-[#556B2F] hover:bg-[#556B2F20] text-center font-light text-[12px] text-[#F7F3E9] shadow-xl cursor-pointer transition">Download Report as PDF</button>
+                </div>
             </div>
         </div>
     );

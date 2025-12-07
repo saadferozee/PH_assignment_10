@@ -13,8 +13,6 @@ const AddOrder = () => {
     const [quantity, setQuantity] = useState(1);
     const navigate = useNavigate();
 
-    console.log(user);
-
     const handleAddOrder = e => {
         e.preventDefault();
 

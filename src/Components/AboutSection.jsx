@@ -41,7 +41,7 @@ const AboutSection = () => {
                         </div>
                     </div>
                     <div className="flex justify-end text-center mt-5">
-                        <a href="/listings/pet" className="md:w-[400px] px-3 pt-1.5 pb-1.75 border border-[#F7F3E9] rounded-full bg-[#556b2fe0] hover:bg-[#556B2F] text-center text-[#F7F3E9] cursor-pointer transition">View Available Pets for Adoption</a>
+                        <a href="/listings/pet" className="md:w-[400px] px-3 pt-1.5 pb-1.75 border border-[#556B2F] rounded-full bg-[#F7F3E9] hover:bg-[#556B2F20] text-center text-[#556B2F] shadow-xl cursor-pointer transition">View Available Pets for Adoption</a>
                     </div>
                 </div>
             </section>

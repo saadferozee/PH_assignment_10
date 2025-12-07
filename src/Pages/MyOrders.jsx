@@ -4,6 +4,7 @@ import AuthContext from '../Contexts/AuthContext';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import Loading from './Loading';
+import ReactTooltip from '../Elements/ReactTooltip';
 
 const MyOrders = () => {
 
@@ -21,7 +22,7 @@ const MyOrders = () => {
             { header: "Price", dataKey: "price" },
             { header: "Date", dataKey: "date" },
         ];
-        autoTable( doc, {
+        autoTable(doc, {
             columns: columns,
             body: myOrders,
             theme: 'striped',
@@ -76,21 +77,6 @@ const MyOrders = () => {
                                         myOrders.map(product => (
                                             <tr key={product?._id} className=''>
                                                 <td></td>
-                                                {/* <td>
-                                                    <div className="flex items-center gap-3">
-                                                        <div className="avatar">
-                                                            <div className="mask mask-squircle h-12 w-12">
-                                                                <img
-                                                                    src={product?.photoURL}
-                                                                    alt="Avatar Tailwind CSS Component" />
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <div className="font-bold">{product?.name}</div>
-                                                            <div className="text-sm opacity-50">{product?.category}</div>
-                                                        </div>
-                                                    </div>
-                                                </td> */}
                                                 <td>
                                                     <p>{product?.productName}</p>
                                                 </td>
@@ -111,7 +97,9 @@ const MyOrders = () => {
                     )
                 }
                 <div className="flex justify-end text-center mt-5">
-                    <button type='button' disabled={loading || myOrders.length < 1} onClick={handleDownloadPDF} className="px-4 pt-1.25 pb-1.5 border border-[#F7F3E9] rounded-full bg-[#556B2F] hover:bg-[#556B2F20] text-center font-light text-[12px] text-[#F7F3E9] shadow-xl cursor-pointer transition">Download Report as PDF</button>
+                    <ReactTooltip id={'pdfButton'} content={'Click to Download PDF'} place={'left'}>
+                        <button type='button' disabled={loading || myOrders.length < 1} onClick={handleDownloadPDF} className="px-4 pt-1.25 pb-1.5 border border-[#F7F3E9] rounded-full bg-[#556B2F] hover:bg-[#556B2F20] text-center font-light text-[12px] text-[#F7F3E9] shadow-xl cursor-pointer transition">Download Report as PDF</button>
+                    </ReactTooltip>
                 </div>
             </div>
         </div>

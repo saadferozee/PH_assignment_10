@@ -1,5 +1,6 @@
 import React from 'react';
 import Headline from '../Elements/Headline';
+import ReactTooltip from '../Elements/ReactTooltip';
 
 const AboutSection = () => {
     return (
@@ -41,7 +42,9 @@ const AboutSection = () => {
                         </div>
                     </div>
                     <div className="flex justify-end text-center mt-5">
-                        <a href="/listings/pet" className="md:w-[400px] px-3 pt-1.5 pb-1.75 border border-[#556B2F] rounded-full bg-[#F7F3E9] hover:bg-[#556B2F20] text-center text-[#556B2F] shadow-xl cursor-pointer transition">View Available Pets for Adoption</a>
+                        <ReactTooltip id='petShow' content={'Click to Show Pet List'} place={'left'}>
+                            <a href="/listings/pet" className="md:w-[400px] px-3 pt-1.5 pb-1.75 border border-[#556B2F] rounded-full bg-[#F7F3E9] hover:bg-[#556B2F20] text-center text-[#556B2F] shadow-xl cursor-pointer transition">View Available Pets for Adoption</a>
+                        </ReactTooltip>
                     </div>
                 </div>
             </section>

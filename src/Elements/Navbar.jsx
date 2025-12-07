@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router';
 import AuthContext from '../Contexts/AuthContext';
 import { FaCloudMoon } from "react-icons/fa";
 import { FaCloudSun } from "react-icons/fa";
+import ReactTooltip from './ReactTooltip';
 
 
 const Navbar = () => {
@@ -60,18 +61,20 @@ const Navbar = () => {
             <div className="bg-[#556B2F] shadow-lg shadow-[#00000040]">
                 <div className='navbar max-w-[1200px] mx-auto'>
                     <div className="navbar-start">
-                        <div className="dropdown">
-                            <div tabIndex={0} role="button" className="mr-4 bt btn-ghos lg:hidden">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+                        <ReactTooltip id={'nav'} content={'Click to Open Menu'} place={'bottom-start'}>
+                            <div className="dropdown">
+                                <div tabIndex={0} role="button" className="mr-4 bt btn-ghos lg:hidden">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+                                </div>
+                                <ul
+                                    tabIndex="-1"
+                                    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                                    {
+                                        linksDrop
+                                    }
+                                </ul>
                             </div>
-                            <ul
-                                tabIndex="-1"
-                                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                                {
-                                    linksDrop
-                                }
-                            </ul>
-                        </div>
+                        </ReactTooltip>
                         <a href='/' className="flex items-center gap-2 pl-0 text-[#F7F3E9]">
                             <img width={35} height={35} src="/Cat-logo.png" alt="cat" />
                             <span className='title hidden md:block font-light text-2xl'>AdoptyCo</span>
@@ -98,10 +101,14 @@ const Navbar = () => {
                                             )
                                         }
                                     </a>
-                                    <button onClick={handleLogOutbutton} className="px-4 pt-1.5 pb-1.75 rounded-full bg-[#F7F3E9] text-[#556B2F] cursor-pointer">LogOut</button>
+                                    <ReactTooltip id='logout' content={'Click to LogOut'} place={'bottom-end'}>
+                                        <button onClick={handleLogOutbutton} className="px-4 pt-1.5 pb-1.75 rounded-full bg-[#F7F3E9] text-[#556B2F] cursor-pointer">LogOut</button>
+                                    </ReactTooltip>
                                 </div>
                             ) : (
-                                <Link to={'/login'} className="px-4 pt-1.5 pb-1.75 rounded-full bg-[#F7F3E9] text-[#556B2F] cursor-pointer">Login</Link>
+                                <ReactTooltip id='login' content={'Click to Login'} place={'bottom-end'}>
+                                    <Link to={'/login'} className="px-4 pt-1.5 pb-1.75 rounded-full bg-[#F7F3E9] text-[#556B2F] cursor-pointer">Login</Link>
+                                </ReactTooltip>
                             )
                         }
                     </div>

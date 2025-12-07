@@ -92,7 +92,7 @@ const Navbar = () => {
                                     <a href="/my-profile">
                                         {
                                             user.photoURL ? (
-                                                <img title={`click to go Profile of User: ${user.displayName}`} width={40} height={40} className='border-2 border-[#F7F3E9] p-0.5 rounded-full' src={`${user.photoURL ? user.photoURL : 'https://img.icons8.com/ink/96/f7f3e9/user-male-circle.png'}`} alt="DP" />
+                                                <img title={`click to go Profile of User: ${user.displayName}`} className='w-10 h-10 object-cover border-2 border-[#F7F3E9] p-0.5 rounded-full' src={`${user.photoURL ? user.photoURL : 'https://img.icons8.com/ink/96/f7f3e9/user-male-circle.png'}`} alt="DP" />
                                             ) : (
                                                 <img title={`click to go Profile of User: ${user.displayName}`} width={40} className='rounded-full' src={'https://img.icons8.com/ink/96/f7f3e9/user-male-circle.png'} alt="DP" />
                                             )

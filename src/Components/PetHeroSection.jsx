@@ -38,7 +38,7 @@ const PetHeroSection = () => {
     return (
         <div className='max-w-[1200px] mx-auto'>
             <section className="pb-22">
-                <div className="container mx-auto px-4">
+                <div className="container mx-auto px-4 lg:px-0">
                     {/* <h2 className="text-3xl font-bold text-center mb-4">Meet Our Pet Heroes</h2>
                 <p className="text-center text-gray-600 mb-10">
                     These amazing individuals have opened their hearts to rescued pets and helped build a compassionate community.

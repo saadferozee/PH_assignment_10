@@ -13,6 +13,8 @@ const AddOrder = () => {
     const [quantity, setQuantity] = useState(1);
     const navigate = useNavigate();
 
+    console.log(user);
+
     const handleAddOrder = e => {
         e.preventDefault();
 
@@ -29,9 +31,7 @@ const AddOrder = () => {
         const note = form.note.value;
         const orderData = { buyerName, buyerEmail, productId, productName, quantity, price: price === 'free' ? 0 : price, date, phoneNumber, address, note }
 
-        console.log(orderData);
-
-        axios.post(`https://adoptyco.vercel.app`, orderData)
+        axios.post(`https://adoptyco.vercel.app/orders`, orderData)
             .then(response => {
                 if (response.status == 200) {
                     form.reset();

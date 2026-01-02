@@ -10,11 +10,21 @@ const Home = () => {
         <div className=''>
             <title>AdoptyCo | Home</title>
             <div>
-                <HeroSection></HeroSection>
-                <CategorySection></CategorySection>
-                <RecentListingsSection></RecentListingsSection>
-                <AboutSection></AboutSection>
-                <PetHeroSection></PetHeroSection>
+                <div id={'hero-section'}>
+                    <HeroSection></HeroSection>
+                </div>
+                <div id={'category-section'}>
+                    <CategorySection></CategorySection>
+                </div>
+                <div id={'recent-section'}>
+                    <RecentListingsSection></RecentListingsSection>
+                </div>
+                <div id={'about-section'}>
+                    <AboutSection></AboutSection>
+                </div>
+                <div id={'pet-hero-section'}>
+                    <PetHeroSection></PetHeroSection>
+                </div>
             </div>
         </div>
     );

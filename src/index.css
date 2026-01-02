@@ -1,6 +1,15 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+html {
+    scroll-behavior: smooth;
+}
+#recent-section,
+#pet-hero-section {
+    scroll-margin-top: 65px;
+    /* navbar height */
+}
+
 * {
     font-family: "Caveat Brush", cursive;
     font-style: normal;

@@ -2,11 +2,12 @@
 @plugin "daisyui";
 
 * {
-    font-stretch: 125%;
+    font-family: "Caveat Brush", cursive;
+    font-style: normal;
 }
 
 .title {
-    font-stretch: 250%;
+    font-size: 40px;
 }
 
 .active {

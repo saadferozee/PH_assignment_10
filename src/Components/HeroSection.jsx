@@ -3,13 +3,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Autoplay, Pagination, EffectCoverflow } from 'swiper/modules';
 import 'swiper/css/effect-coverflow';
+import { HiTicket } from 'react-icons/hi2';
 
 
 const HeroSection = () => {
     return (
         <div>
             <div>
-                <div className='static z-0 my-[3%] mx-0 w-auto overflow-hidden fredoka-normal'>
+                <div className='static z-0 mb-[3%] mt-[7%] mx-0 w-auto overflow-hidden fredoka-normal'>
                     <Swiper
                         effect={'coverflow'}
                         spaceBetween={0}
@@ -17,11 +18,11 @@ const HeroSection = () => {
                         centeredSlides={true}
                         slidesPerView={1.25}
                         loop={true}
-                        autoplay={{
-                            delay: 3500,
-                            disableOnInteraction: false,
-                        }}
-                        speed={2000}
+                        // autoplay={{
+                        //     delay: 5500,
+                        //     disableOnInteraction: false,
+                        // }}
+                        speed={4000}
                         pagination={{
                             clickable: true,
                         }}
@@ -34,48 +35,57 @@ const HeroSection = () => {
                         }}
                         navigation={true}
                         modules={[Autoplay, Pagination, EffectCoverflow]}
-                        className="mySwiper"
+                        className="mySwiper title-logo"
                     >
-                        <SwiperSlide className=' flex flex-col justify-center items-center'>
-                            <div className='h-fit'>
-                                <h1 className='mx-[2.11%] mb-1.5 pb-1.25 font-semibold font-stretched text-xs sm:text-2xl text-[#556B2F] text-shadow-lg text-shadow-[#00000010] dark:text-shadow-[#F7F3E920] text-center'>Find Your Furry Friend Today!</h1>
-                                {/* <hr className='my-2 mx-[3%] text-shadow-lg' /> */}
-                                <img className='m-[2%] my-0 h-[300px] md:h-[600px] w-[96%] object-cover rounded-lg' src="https://i.postimg.cc/d3kC4P2b/imgi-200-pexels-photo-7726311.jpg" alt="dog taking shower with his master" />
+                        <SwiperSlide className="flex flex-col justify-center items-center">
+                            <div className="relative h-fit w-[96%] m-[2%] my-0">
+                                <div className="company-logo absolute bottom-4 right-4 flex flex-col items-center text-white/80 drop-shadow-md">
+                                    <span className="text-md lg:text-xl">AdoptyCo</span>
+                                    <span className="font-light text-[10px] lg:text-lg">
+                                        “Adopt a cat, shop for him..”
+                                    </span>
+                                </div>
+                                <img className="h-75 md:h-120 w-full border-3 border-[#556B2F] p-2 object-cover rounded-lg" src="https://i.postimg.cc/d3kC4P2b/imgi-200-pexels-photo-7726311.jpg" alt="" />
+                                {/* Overlay text */}
+                                <div className="w-full h-full absolute inset-0 bg-[#356f0F60]  flex items-center justify-center rounded-lg">
+                                    <h3 className="text-[#ffffff] text-xl sm:text-2xl md:text-4xl lg:text-5xl 2xl:text-6xl font-bold text-center px-12 py-2 rounded text-shadow-lg">
+                                        “Up here, life feels lighter, dreams feel closer, and the world feels wide open.”
+                                    </h3>
+                                </div>
                             </div>
                         </SwiperSlide>
-                        <SwiperSlide className='flex flex-col justify-center items-center'>
-                            <div className='h-fit'>
-                                <h1 className='mx-[2.11%] mb-1.5 pb-1.25 font-semibold font-stretched text-xs sm:text-2xl text-[#556B2F] text-shadow-lg text-shadow-[#00000010] dark:text-shadow-[#F7F3E920] text-center'>Adopt, Don't Shop - Give a Pet a Home</h1>
-                                {/* <hr className='my-2 mx-[3%] text-shadow-lg' /> */}
-                                <img className='m-[2%] my-0 h-[300px] md:h-[600px] w-[96%] object-cover rounded-lg' src="https://i.postimg.cc/WpBXFTcw/imgi-204-DC6F7787-9BE9-4BFF-ADCA-59F1C0BF18D6-da82e18b.jpg" alt="young lady playing with dog" />
+                        <SwiperSlide className="flex flex-col justify-center items-center">
+                            <div className="relative h-fit w-[96%] m-[2%] my-0">
+                                <div className="company-logo absolute bottom-4 right-4 flex flex-col items-center text-white/80 drop-shadow-md">
+                                    <span className="text-md lg:text-xl">AdoptyCo</span>
+                                    <span className="font-light text-[10px] lg:text-lg">
+                                        “Adopt a cat, shop for him..”
+                                    </span>
+                                </div>
+                                <img className="h-75 md:h-120 w-full border-3 border-[#556B2F] p-2 object-cover rounded-lg" src="https://i.postimg.cc/WpBXFTcw/imgi-204-DC6F7787-9BE9-4BFF-ADCA-59F1C0BF18D6-da82e18b.jpg" alt="" />
+                                {/* Overlay text */}
+                                <div className="w-full h-full absolute inset-0 bg-[#356f0F60]  flex items-center justify-center rounded-lg">
+                                    <h3 className="text-[#ffffff] text-xl sm:text-2xl md:text-4xl lg:text-5xl 2xl:text-6xl font-bold text-center px-12 py-2 rounded text-shadow-lg">
+                                        “From up here, the earth feels endless… just like our journey waiting to begin. Pack your bags, darling.”
+                                    </h3>
+                                </div>
                             </div>
                         </SwiperSlide>
-                        <SwiperSlide className='flex flex-col justify-center items-center'>
-                            <div className='h-fit'>
-                                <h1 className='mx-[2.11%] mb-1.5 pb-1.25 font-semibold font-stretched text-xs sm:text-2xl text-[#556B2F] text-shadow-lg text-shadow-[#00000010] dark:text-shadow-[#F7F3E920] text-center'>Because Every Pet Deserves Love and Care</h1>
-                                {/* <hr className='my-2 mx-[3%] text-shadow-lg' /> */}
-                                <img className='m-[2%] my-0 h-[300px] md:h-[600px] w-[96%] object-cover rounded-lg' src="https://i.postimg.cc/HWw7zg7z/imgi-169-Getty-Images-470406795.jpg" alt="dog taking shower by car washer hose pipe" />
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide className='flex flex-col justify-center items-center'>
-                            <div className='h-fit'>
-                                <h1 className='mx-[2.11%] mb-1.5 pb-1.25 font-semibold font-stretched text-xs sm:text-2xl text-[#556B2F] text-shadow-lg text-shadow-[#00000010] dark:text-shadow-[#F7F3E920] text-center'>Find Your Furry Friend Today!</h1>
-                                {/* <hr className='my-2 mx-[3%] text-shadow-lg' /> */}
-                                <img className='m-[2%] my-0 h-[300px] md:h-[600px] w-[96%] object-cover rounded-lg' src="https://i.postimg.cc/d3kC4P2b/imgi-200-pexels-photo-7726311.jpg" alt="dog taking shower with his master" />
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide className='flex flex-col justify-center items-center'>
-                            <div className='h-fit'>
-                                <h1 className='mx-[2.11%] mb-1.5 pb-1.25 font-semibold font-stretched text-xs sm:text-2xl text-[#556B2F] text-shadow-lg text-shadow-[#00000010] dark:text-shadow-[#F7F3E920] text-center'>Adopt, Don't Shop - Give a Pet a Home</h1>
-                                {/* <hr className='my-2 mx-[3%] text-shadow-lg' /> */}
-                                <img className='m-[2%] my-0 h-[300px] md:h-[600px] w-[96%] object-cover rounded-lg' src="https://i.postimg.cc/WpBXFTcw/imgi-204-DC6F7787-9BE9-4BFF-ADCA-59F1C0BF18D6-da82e18b.jpg" alt="young lady playing with dog" />
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide className='flex flex-col justify-center items-center'>
-                            <div className='h-fit'>
-                                <h1 className='mx-[2.11%] mb-1.5 pb-1.25 font-semibold font-stretched text-xs sm:text-2xl text-[#556B2F] text-shadow-lg text-shadow-[#00000010] dark:text-shadow-[#F7F3E920] text-center'>Because Every Pet Deserves Love and Care</h1>
-                                {/* <hr className='my-2 mx-[3%] text-shadow-lg' /> */}
-                                <img className='m-[2%] my-0 h-[300px] md:h-[600px] w-[96%] object-cover rounded-lg' src="https://i.postimg.cc/HWw7zg7z/imgi-169-Getty-Images-470406795.jpg" alt="dog taking shower by car washer hose pipe" />
+                        <SwiperSlide className="flex flex-col justify-center items-center">
+                            <div className="relative h-fit w-[96%] m-[2%] my-0">
+                                <div className="company-logo absolute bottom-4 right-4 flex flex-col items-center text-white/80 drop-shadow-md">
+                                    <span className="text-md lg:text-xl">AdoptyCo</span>
+                                    <span className="font-light text-[10px] lg:text-lg">
+                                        “Adopt a cat, shop for him..”
+                                    </span>
+                                </div>
+                                <img className="h-75 md:h-120 w-full border-3 border-[#556B2F] p-2 object-cover rounded-lg" src="https://i.postimg.cc/HWw7zg7z/imgi-169-Getty-Images-470406795.jpg" alt="" />
+                                {/* Overlay text */}
+                                <div className="w-full h-full absolute inset-0 bg-[#356f0F60]  flex items-center justify-center rounded-lg">
+                                    <h3 className="text-[#ffffff] text-xl sm:text-2xl md:text-4xl lg:text-5xl 2xl:text-6xl font-bold text-center px-12 py-2 rounded text-shadow-lg">
+                                        “Every click from the bus window was a promise—these travel days will never fade away.”
+                                    </h3>
+                                </div>
                             </div>
                         </SwiperSlide>
                     </Swiper>

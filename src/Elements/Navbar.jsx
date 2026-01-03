@@ -66,7 +66,7 @@ const Navbar = () => {
     return (
         <div className='sticky top-0 z-50'>
             <div className="bg-[#556B2F] shadow-lg shadow-[#00000040]">
-                <div className='navbar min-h-0 h-11 md:h-22 py-0  max-w-[1200px] mx-auto'>
+                <div className='navbar min-h-0 h-11 md:h-22 py-0  max-w-[1200px] mx-auto lg:px-5 xl:mx-auto'>
                     <div className="navbar-start">
                         <ReactTooltip id={'nav'} content={'Click to Open Menu'} place={'bottom-start'}>
                             <div className="dropdown">
@@ -84,7 +84,7 @@ const Navbar = () => {
                         </ReactTooltip>
                         <a href='/' className="flex items-center gap-2 pl-0 text-[#F7F3E9]">
                             <img className='w-6 md:w-10 h-fit' src="/Cat-logo.png" alt="cat" />
-                            <span className='title hidden md:block font-light text-2xl'>AdoptyCo</span>
+                            <span className='title font-caveat hidden md:block font-light text-2xl'>AdoptyCo</span>
                         </a>
                     </div>
                     <div className="navbar-center hidden lg:flex">

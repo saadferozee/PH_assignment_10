@@ -4,10 +4,10 @@ import ReactTooltip from '../Elements/ReactTooltip';
 
 const AboutSection = () => {
     return (
-        <div className='max-w-[1200px] mx-auto'>
+        <div className='max-w-[1200px] mx-auto lg:mx-5 xl:mx-auto'>
             <section className="py-16">
                 <div className="container mx-auto px-4 lg:px-0">
-                    <Headline typo={'Why Adopt from AdoptyCo ?'}></Headline>
+                    <Headline typo={'AdoptyCo : Services'}></Headline>
                     {/* <p className="text-center text-gray-600 mb-10">
                         Giving a home to a pet is giving them love, care, and a second chance at life. Here's why adopting from PawMart is the best choice.
                     </p> */}

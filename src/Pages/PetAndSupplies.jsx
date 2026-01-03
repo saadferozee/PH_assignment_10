@@ -87,7 +87,7 @@ const PetAndSupplies = () => {
             </div>
             {
                 loading ? <Loading viewHeight="70" color={'#556B2F'}></Loading> : (
-                    <div className='px-4 lg:px-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+                    <div className='px-4 lg:px-0 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-1 sm:gap-2 md:gap-2.5 xl:gap-3'>
                         {
                             searchInput === "" ? (
                                 products.map(product => <ProductCard key={product._id} product={product}></ProductCard>)

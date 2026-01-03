@@ -36,7 +36,7 @@ const heroes = [
 
 const PetHeroSection = () => {
     return (
-        <div className='max-w-[1200px] mx-auto'>
+        <div className='max-w-[1200px] mx-auto lg:mx-5 xl:mx-auto'>
             <section className="pb-22">
                 <div className="container mx-auto px-4 lg:px-0">
                     {/* <h2 className="text-3xl font-bold text-center mb-4">Meet Our Pet Heroes</h2>

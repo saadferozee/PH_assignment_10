@@ -11,8 +11,11 @@ html {
 }
 
 * {
-    font-family: "Caveat Brush", cursive;
+    font-family: "Comic Neue", cursive;
     font-style: normal;
+}
+.font-caveat {
+    font-family: "Caveat Brush", cursive;
 }
 
 .title {

@@ -7,7 +7,7 @@ import PetHeroSection from '../Components/PetHeroSection';
 
 const Home = () => {
     return (
-        <div className=''>
+        <div>
             <title>AdoptyCo | Home</title>
             <div>
                 <div id={'hero-section'}>

@@ -35,7 +35,7 @@ const HeroSection = () => {
                         }}
                         navigation={true}
                         modules={[Autoplay, Pagination, EffectCoverflow]}
-                        className="mySwiper title-logo"
+                        className="mySwiper title-logo font-caveat"
                     >
                         <SwiperSlide className="flex flex-col justify-center items-center">
                             <div className="relative h-fit w-[96%] m-[2%] my-0">

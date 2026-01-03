@@ -18,7 +18,7 @@ const ProductCard = ({ product }) => {
                     <img className='w-full h-[100px] sm:h-[150px] md:h-[180px] xl:h-[150px] object-cover border border-[#F7F3E9] rounded-lg' src={photoURL} alt={name} />
                 </div>
                 <h3 className='mt-1 font-semibold font-caveat text-sm sm:text-xl lg:text-3xl xl:text-[18px] text-shadow-lg text-shadow-[#F7F3E920]'>{name}</h3>
-                <p className='hidden sm:block text-sm lg:text-xl xl:text-sm'>Shipping from : {location}</p>
+                <p className='hidden sm:block text-sm lg:text-xl xl:text-sm'>Store: {location}</p>
                 <div className='my-1 flex justify-between items-center'>
                     <h2 className='font-black font-caveat text-lg sm:text-xl lg:text-4xl xl:text-2xl'>
                         {price == 0 ? 'Free' : (

@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 
 const Register = () => {
 
-    const { setUser, signUp, loginWithGoogle, updateUser } = useContext(AuthContext);
+    const { setUser, signUp, saveUserInfoToDB, loginWithGoogle, updateUser } = useContext(AuthContext);
     const navigate = useNavigate();
     const [passError, setPassError] = useState('');
 
@@ -56,8 +56,10 @@ const Register = () => {
             .then(credential => {
                 setUser(credential.user);
                 updateUser(name, photoURL)
-                    .then(res => console.log(res))
+                    .then(res => res)
                     .catch(error => console.log(error));
+                const user = { name, email, password: { loginType: 'email-password', password: password }, photoURL, role: 'user' };
+                saveUserInfoToDB(user);
                 Swal.fire({
                     title: "User Registration Successful.",
                     text: "Now you can surf this website freely, anything sell or buy, any pet you adopt or list for adopt.",
@@ -71,11 +73,11 @@ const Register = () => {
                     text: `${error.message}`,
                     icon: "error"
                 });
-                
+
             });
-        }
-        const handleGoogleLogin = () => {
-            loginWithGoogle()
+    }
+    const handleGoogleLogin = () => {
+        loginWithGoogle()
             .then(credential => {
                 setUser(credential.user);
                 Swal.fire({
@@ -97,11 +99,11 @@ const Register = () => {
     return (
         <div>
             <title>AdoptyCo | Register</title>
-            <div className='w-full py-[200px]'>
+            <div className='w-full py-[60px]'>
                 <div className='max-w-[500px] mx-auto'>
-                    <form onSubmit={handleRegister} className='w-full px-2'>
+                    <form onSubmit={handleRegister} className='w-full px-6'>
                         <fieldset className="fieldset w-full bg-[#556B2F] border-none shadow-2xl shadow-[#00000070] rounded-3xl border p-6 sm:p-10">
-                            <h2 className='pl-2 text-2xl text-[#F7F3E9]'>Register</h2>
+                            <h2 className='pl-2 text-5xl font-caveat text-[#F7F3E9]'>Register</h2>
 
                             {/* <label className="label">Name</label> */}
                             <input type="text" name='name' className="input px-6 w-full rounded-full" placeholder="Name" />
@@ -130,10 +132,15 @@ const Register = () => {
                                     type='submit'
                                     className="btn mt-2 bg-[#F7F3E9] shadow-[#F7F3E9] border-transparent rounded-full text-[#556B2F]"
                                 >Register</button>
+                                <div className='w-full my-2 px-2 text-white flex items-center gap-2'>
+                                    <hr className='w-full' />
+                                    <span>or</span>
+                                    <hr className='w-full' />
+                                </div>
                                 <button
                                     type='button'
                                     onClick={handleGoogleLogin}
-                                    className="btn mt-2 bg-[#F7F3E9] shadow-[#F7F3E9] border-transparent rounded-full text-[#556B2F]"
+                                    className="btn bg-[#F7F3E9] shadow-[#F7F3E9] border-transparent rounded-full text-[#556B2F]"
                                 ><FcGoogle className='text-xl' /> Register with Google</button>
                             </div>
 

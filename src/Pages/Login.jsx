@@ -11,6 +11,20 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
+    const fillCredential = type => {
+        const form = document.getElementById('login-fieldset');
+        const email = form.childNodes[1];
+        const password = form.childNodes[2].childNodes[0];
+        if (type === 'admin') {
+            email.value = 'admin@testing.com';
+            password.value = 'VerySecurePassword';
+        } else if (type === 'user') {
+            email.value = 'user@testing.com';
+            password.value = 'VerySecurePassword';
+        } else {
+            return;
+        }
+    }
     const handleLogIn = e => {
         e.preventDefault();
 
@@ -61,27 +75,35 @@ const Login = () => {
     return (
         <div>
             <title>AdoptyCo | Login</title>
-            <div className='w-full py-[200px]'>
+            <div className='w-full py-[60px]'>
                 <div className='max-w-[500px] mx-auto'>
-                    <form onSubmit={handleLogIn} className='w-full px-2'>
-                        <fieldset className="fieldset w-full bg-[#556B2F] border-none shadow-2xl shadow-[#00000070] rounded-3xl border p-6 sm:p-10">
-                            <h2 className='pl-2 text-2xl text-[#F7F3E9]'>Login</h2>
+                    <form onSubmit={handleLogIn} className='w-full px-6'>
+                        <fieldset id='login-fieldset' className="fieldset w-full bg-[#556B2F] border-none shadow-2xl shadow-[#00000070] rounded-3xl border p-6 sm:p-10">
+                            <h2 className='pl-2 text-5xl font-caveat text-[#F7F3E9]'>Login</h2>
 
                             {/* <label className="label">Email</label> */}
                             <input type="email" name='email' className="input px-6 w-full rounded-full" placeholder="Email" />
 
                             {/* <label className="label">Password</label> */}
-                            <input type="password" name='password' className="input px-6 w-full rounded-full" placeholder="Password" />
+                            <div>
+                                <input type="password" name='password' className="input px-6 w-full rounded-full" placeholder="Password" />
+                                <p className='pl-2 text-white'>Testing demo as <span onClick={() => fillCredential('admin')} className='link'>Admin</span> or <span onClick={() => fillCredential('user')} className='link'>User</span></p>
+                            </div>
 
                             <div className='flex flex-col'>
                                 <button
                                     type='submit'
                                     className="btn mt-2 bg-[#F7F3E9] shadow-[#F7F3E9] border-transparent rounded-full text-[#556B2F]"
                                 >Login</button>
+                                <div className='w-full my-2 px-2 text-white flex items-center gap-2'>
+                                    <hr className='w-full'/>
+                                    <span>or</span>
+                                    <hr className='w-full'/>
+                                </div>
                                 <button
                                     type='button'
                                     onClick={handleGoogleLogin}
-                                    className="btn mt-2 bg-[#F7F3E9] shadow-[#F7F3E9] border-transparent rounded-full text-[#556B2F]"
+                                    className="btn bg-[#F7F3E9] shadow-[#F7F3E9] border-transparent rounded-full text-[#556B2F]"
                                 ><FcGoogle className='text-xl' /> Login with Google</button>
                             </div>
 

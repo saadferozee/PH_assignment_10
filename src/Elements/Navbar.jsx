@@ -111,7 +111,7 @@ const Navbar = () => {
                                         </div>
                                         <ul tabIndex={-1} className="menu dropdown-content right-1 bg-[#556B2F40] rounded z-1 mt-3 w-fit p-2 shadow space-y-1.5">
                                             <ReactTooltip id='logout' content={'Click to see profile'} place={'bottom-end'}>
-                                                <button className="px-4 pt-0.5 pb-0.75 rounded-full bg-[#F7F3E9] text-[#556B2F] cursor-pointer">Profile</button>
+                                                <button className="px-4 pt-0.5 pb-0.75 rounded-full bg-[#F7F3E9] text-[#556B2F] cursor-pointer"><a href="/my-profile">Profile</a></button>
                                             </ReactTooltip>
                                             <ReactTooltip id='logout' content={'Click to LogOut'} place={'bottom-end'}>
                                                 <button onClick={handleLogOutbutton} className="px-4 pt-0.5 pb-0.75 rounded-full bg-red-300 text-[#556B2F] cursor-pointer">LogOut</button>

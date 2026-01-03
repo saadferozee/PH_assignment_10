@@ -3,6 +3,7 @@ import { RouterContextProvider } from 'react-router';
 import AuthContext from '../Contexts/AuthContext';
 import { createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../Firebase/firebase.init';
+import axios from 'axios';
 
 const AuthProvider = ({ children }) => {
 
@@ -11,6 +12,19 @@ const AuthProvider = ({ children }) => {
 
     const signUp = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password);
+    }
+    const saveUserInfoToDB = async user => {
+        const isUserExistedRes = await axios.get(`https://adoptyco.vercel.app/users/user/${user?.email}`);
+        if (isUserExistedRes.data) {
+            return;
+        } else {
+            axios.post('https://adoptyco.vercel.app/add-user', user)
+                .then(res => {
+                    console.log(res);
+                }).catch(error => {
+                    console.log(error);
+                })
+        };
     }
     const logIn = (email, password) => {
         return signInWithEmailAndPassword(auth, email, password);
@@ -39,6 +53,7 @@ const AuthProvider = ({ children }) => {
         authLoading,
         setUser,
         signUp,
+        saveUserInfoToDB,
         logIn,
         loginWithGoogle,
         updateUser,

@@ -29,14 +29,14 @@ const Navbar = () => {
     }
 
     const links = <div className={`flex ${user ? 'gap-1' : 'gap-3'} font-stretch-125% text-[#F7F3E9] text-xl`}>
-        <NavLink className='px-3 pt-0.5 pb-0.75 rounded-full border border-transparent' to={'/'}>Home</NavLink>
-        <NavLink className='px-3 pt-0.5 pb-0.75 rounded-full border border-transparent' to={'/listings'}>Pet & Supplies</NavLink>
+        <NavLink className='px-3! pt-0.5 pb-0.75 rounded-full border-2 border-transparent' to={'/'}>Home</NavLink>
+        <NavLink className='px-3! pt-0.5 pb-0.75 rounded-full border-2 border-transparent' to={'/listings'}>Pet & Supplies</NavLink>
         {
             user ? (
                 <>
-                    <NavLink className='px-3 pt-0.5 pb-0.75 rounded-full border border-transparent' to={'/add-listing'}>Add Listing</NavLink>
-                    <NavLink className='px-3 pt-0.5 pb-0.75 rounded-full border border-transparent' to={'/my-listings'}>My Listings</NavLink>
-                    <NavLink className='px-3 pt-0.5 pb-0.75 rounded-full border border-transparent' to={'/my-orders'}>My Orders</NavLink>
+                    <NavLink className='px-3! pt-0.5 pb-0.75 rounded-full border-2 border-transparent' to={'/add-listing'}>Add Listing</NavLink>
+                    <NavLink className='px-3! pt-0.5 pb-0.75 rounded-full border-2 border-transparent' to={'/my-listings'}>My Listings</NavLink>
+                    <NavLink className='px-3! pt-0.5 pb-0.75 rounded-full border-2 border-transparent' to={'/my-orders'}>My Orders</NavLink>
                 </>
             ) : (
                 <div className='dropdown flex items-center'>

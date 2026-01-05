@@ -32,22 +32,22 @@ const DashboardNavigation = ({ children }) => {
                     <ul className='space-y-6'>
                         <li>
                             <NavLink to={'/dashboard/stats'} className="flex justify-center">
-                                <MdSpaceDashboard className='text-[44px] cursor-pointer border-2 border-transparent p-px' />
+                                <MdSpaceDashboard className='text-[44px] cursor-pointer border-2 border-transparent' />
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to={'/dashboard/manage-users'} className="flex justify-center">
-                                <FaUserCog className='text-[44px] cursor-pointer border-2 border-transparent p-px' />
+                                <FaUserCog className='text-[44px] cursor-pointer border-2 border-transparent' />
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to={'/dashboard/manage-listings'} className="flex justify-center">
-                                <FaShop className='text-[44px] cursor-pointer border-2 border-transparent p-px' />
+                                <FaShop className='text-[44px] cursor-pointer border-2 border-transparent' />
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to={'/dashboard/manage-orders'} className="flex justify-center">
-                                <FaShoppingBag className='text-[44px] cursor-pointer border-2 border-transparent p-px' />
+                                <FaShoppingBag className='text-[44px] cursor-pointer border-2 border-transparent' />
                             </NavLink>
                         </li>
                     </ul>

@@ -3,6 +3,7 @@ import AuthContext from '../Contexts/AuthContext';
 import { useNavigate, useParams } from 'react-router';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import analyticsService from '../Services/analyticsService';
 
 const AddOrder = () => {
 
@@ -32,6 +33,14 @@ const AddOrder = () => {
         axios.post(`https://adoptyco.vercel.app/orders`, orderData)
             .then(response => {
                 if (response.status == 200) {
+                    // Track order placement
+                    analyticsService.logOrderPlaced(
+                        productName, 
+                        product.category, 
+                        price === 'free' ? 0 : parseInt(price), 
+                        parseInt(quantity)
+                    );
+                    
                     form.reset();
                     // sweet alert
                     Swal.fire({

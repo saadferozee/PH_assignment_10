@@ -19,6 +19,7 @@ import AdminDashboard from '../Pages/AdminDashboard';
 import ManageUser from '../Pages/ManageUser';
 import ManageListings from '../Pages/ManageListings';
 import ManageOrders from '../Pages/ManageOrders';
+import ErrorBoundary from '../Components/ErrorBoundary';
 
 const router = createBrowserRouter([
     {
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
         path: '/dashboard',
         element: <PrivateRoute authorization={'admin'}><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
-            {path: 'stats', Component: AdminDashboard},
+            {path: 'stats', element: <ErrorBoundary><AdminDashboard /></ErrorBoundary>},
             {path: 'manage-users', Component: ManageUser},
             {path: 'manage-listings', Component: ManageListings},
             {path: 'manage-orders', Component: ManageOrders}

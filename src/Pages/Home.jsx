@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import HeroSection from '../Components/HeroSection';
 import CategorySection from '../Components/CategorySection';
 import RecentListingsSection from '../Components/RecentListingsSection';
 import AboutSection from '../Components/AboutSection';
 import PetHeroSection from '../Components/PetHeroSection';
+import analyticsService from '../Services/analyticsService';
 
 const Home = () => {
+    useEffect(() => {
+        // Track page view
+        analyticsService.logPageView('home', 'AdoptyCo | Home');
+    }, []);
+
     return (
         <div>
             <title>AdoptyCo | Home</title>

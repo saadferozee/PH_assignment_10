@@ -4,6 +4,7 @@ import AuthContext from '../Contexts/AuthContext';
 import { createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../Firebase/firebase.init';
 import axios from 'axios';
+import analyticsService from '../Services/analyticsService';
 
 const AuthProvider = ({ children }) => {
 
@@ -20,6 +21,9 @@ const AuthProvider = ({ children }) => {
         if (isUserExistedRes.data) {
             return;
         } else {
+            // Track user registration
+            analyticsService.logUserRegistration('email');
+            
             axios.post('https://adoptyco.vercel.app/add-user', user)
                 .then(res => {
                     console.log(res);
@@ -29,10 +33,14 @@ const AuthProvider = ({ children }) => {
         };
     }
     const logIn = (email, password) => {
+        // Track user login
+        analyticsService.logUserLogin('email');
         return signInWithEmailAndPassword(auth, email, password);
     }
     const googleProvider = new GoogleAuthProvider();
     const loginWithGoogle = () => {
+        // Track Google login
+        analyticsService.logUserLogin('google');
         return signInWithPopup(auth, googleProvider);
     }
     const updateUser = (name, photoURL) => {

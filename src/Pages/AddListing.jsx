@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import AuthContext from '../Contexts/AuthContext';
 import axios, { AxiosError } from 'axios';
 import Swal from 'sweetalert2';
+import analyticsService from '../Services/analyticsService';
 
 const AddListing = () => {
 
@@ -26,6 +27,9 @@ const AddListing = () => {
         axios.post('https://adoptyco.vercel.app/listings', data)
             .then(response => {
                 if (response.status == 200) {
+                    // Track listing creation
+                    analyticsService.logListingCreated(category, price);
+                    
                     form.reset();
                     // sweet alert
                     Swal.fire({

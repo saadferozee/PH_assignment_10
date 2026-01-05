@@ -3,22 +3,29 @@ import AuthContext from '../Contexts/AuthContext';
 import Loading from '../Pages/Loading';
 import { Navigate, useLocation } from 'react-router';
 
-const PrivateRoute = ({ children }) => {
+const PrivateRoute = ({ children, authorization }) => {
 
-    const { user, authLoading } = useContext(AuthContext);
     const location = useLocation();
 
-    if (authLoading) {
-        return (
-            <Loading viewHeight={70} color={'#556B2F'}></Loading>
-        )
+    const { user, role, authLoading, roleLoading } = useContext(AuthContext);
+
+    if (authLoading || roleLoading) {
+        return <Loading viewHeight={70} color="#0A2F23" />;
     }
 
-    if (user) {
-        return <>{children}</>
-    } else {
-        return <Navigate state={location.pathname} to={'/login'}></Navigate>
+    if (!user) {
+        return <Navigate to="/login" state={location.pathname} />;
     }
+
+    if (authorization === 'all-users') {
+        return children;
+    }
+
+    if (role === authorization) {
+        return children;
+    }
+
+    return <Navigate to="/login" replace />;
 };
 
 export default PrivateRoute;

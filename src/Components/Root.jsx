@@ -7,11 +7,9 @@ import AuthProvider from '../Providers/AuthProvider';
 const Root = () => {
     return (
         <div className=''>
-            <AuthProvider>
                 <Navbar></Navbar>
                 <Outlet />
                 <Footer></Footer>
-            </AuthProvider>
         </div>
     );
 };

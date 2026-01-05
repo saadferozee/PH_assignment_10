@@ -24,5 +24,7 @@ html {
 
 .active {
     box-sizing: border-box;
-    border: 1px solid #F7F3E9;
+    padding: 1px;
+    border: 2px solid #F7F3E9;
+    border-radius: 10px;
 }

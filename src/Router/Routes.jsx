@@ -14,6 +14,11 @@ import MyProfile from '../Pages/MyProfile';
 import ProductDetails from '../Pages/ProductDetails';
 import AddOrder from '../Pages/AddOrder';
 import UpdateListing from '../Pages/UpdateLIsting';
+import DashboardLayout from '../Layouts/DashboardLayout';
+import AdminDashboard from '../Pages/AdminDashboard';
+import ManageUser from '../Pages/ManageUser';
+import ManageListings from '../Pages/ManageListings';
+import ManageOrders from '../Pages/ManageOrders';
 
 const router = createBrowserRouter([
     {
@@ -23,15 +28,25 @@ const router = createBrowserRouter([
             { index: true, Component: Home },
             { path: '/listings', Component: PetAndSupplies },
             { path: '/listings/:category', Component: PetAndSupplies },
-            { path: '/product/:id', element: <PrivateRoute><ProductDetails></ProductDetails></PrivateRoute> },
-            { path: '/add-order/:id', element: <PrivateRoute><AddOrder></AddOrder></PrivateRoute> },
+            { path: '/product/:id', element: <ProductDetails></ProductDetails> },
+            { path: '/add-order/:id', element: <PrivateRoute authorization={'all-users'}><AddOrder></AddOrder></PrivateRoute> },
             { path: '/login', Component: Login },
             { path: '/register', Component: Register },
-            { path: '/add-listing', element: <PrivateRoute><AddListing></AddListing></PrivateRoute> },
-            { path: '/my-listings', element: <PrivateRoute><MyListings></MyListings></PrivateRoute> },
-            { path: '/update-listing/:id', element: <PrivateRoute><UpdateListing></UpdateListing></PrivateRoute> },
-            { path: '/my-orders', element: <PrivateRoute><MyOrders></MyOrders></PrivateRoute> },
-            { path: '/my-profile', element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute> }
+            { path: '/add-listing', element: <PrivateRoute authorization={'all-users'}><AddListing></AddListing></PrivateRoute> },
+            { path: '/my-listings', element: <PrivateRoute authorization={'all-users'}><MyListings></MyListings></PrivateRoute> },
+            { path: '/update-listing/:id', element: <PrivateRoute authorization={'all-users'}><UpdateListing></UpdateListing></PrivateRoute> },
+            { path: '/my-orders', element: <PrivateRoute authorization={'all-users'}><MyOrders></MyOrders></PrivateRoute> },
+            { path: '/my-profile', element: <PrivateRoute authorization={'all-users'}><MyProfile></MyProfile></PrivateRoute> }
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRoute authorization={'admin'}><DashboardLayout></DashboardLayout></PrivateRoute>,
+        children: [
+            {path: 'stats', Component: AdminDashboard},
+            {path: 'manage-users', Component: ManageUser},
+            {path: 'manage-listings', Component: ManageListings},
+            {path: 'manage-orders', Component: ManageOrders}
         ]
     },
     {

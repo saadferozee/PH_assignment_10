@@ -8,7 +8,9 @@ import axios from 'axios';
 const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState('');
+    const [role, setRole] = useState('');
     const [authLoading, setAuthLoading] = useState(true);
+    const [roleLoading, setRoleLoading] = useState(true);
 
     const signUp = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password);
@@ -47,10 +49,26 @@ const AuthProvider = ({ children }) => {
         })
         return () => unsubscribe();
     },[])
+    useEffect(() => {
+        if (authLoading) return;
+        if (!user) {
+            setRole(null) // its a warning, not an error.
+            setRoleLoading(false)
+            return
+        }
+        setRoleLoading(true)
+        axios.get(`https://adoptyco.vercel.app/users/info?email=${user?.email}`)
+            .then(response => {
+                setRole(response.data.role);
+            }).catch(error => console.log(error))
+            .finally(() => setRoleLoading(false));
+    }, [user, authLoading])
 
     const contexts = {
         user,
+        role,
         authLoading,
+        roleLoading,
         setUser,
         signUp,
         saveUserInfoToDB,

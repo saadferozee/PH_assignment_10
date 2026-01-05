@@ -142,79 +142,79 @@ const ManageListings = () => {
     }
 
     return (
-        <div className="p-6 space-y-6">
+        <div className="p-3 sm:p-4 lg:p-6 space-y-4 lg:space-y-6">
             <title>AdoptyCo | Manage Listings</title>
             
             {/* Header */}
-            <div className="mb-8">
-                <p className="text-gray-600 dark:text-gray-300">
+            <div className="mb-4 lg:mb-8">
+                <p className="text-gray-600 dark:text-gray-300 text-sm lg:text-base">
                     Manage product listings, vendors, and marketplace analytics
                 </p>
             </div>
 
-            {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-                <div className="bg-[#556B2F] rounded-2xl p-6 text-[#F7F3E9] shadow-lg hover:shadow-xl transition-shadow">
+            {/* Stats Cards - Mobile: 2 columns, Desktop: 4 columns */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6 mb-4 lg:mb-6">
+                <div className="bg-[#556B2F] rounded-xl lg:rounded-2xl p-3 lg:p-6 text-[#F7F3E9] shadow-lg hover:shadow-xl transition-shadow">
                     <div className="flex items-center justify-between">
-                        <div>
-                            <p className="text-sm opacity-80 mb-1">Total Listings</p>
-                            <p className="text-3xl font-bold">{stats.totalListings}</p>
-                            <p className="text-xs opacity-70 mt-1">{stats.petListings} pets</p>
+                        <div className="flex-1 min-w-0">
+                            <p className="text-xs lg:text-sm opacity-80 mb-1">Listings</p>
+                            <p className="text-lg lg:text-3xl font-bold">{stats.totalListings}</p>
+                            <p className="text-xs opacity-70 mt-1 truncate">{stats.petListings} pets</p>
                         </div>
-                        <FaStore className="text-4xl opacity-70" />
+                        <FaStore className="text-2xl lg:text-4xl opacity-70 flex-shrink-0" />
                     </div>
                 </div>
                 
-                <div className="bg-[#6B8E23] rounded-2xl p-6 text-[#F7F3E9] shadow-lg hover:shadow-xl transition-shadow">
+                <div className="bg-[#6B8E23] rounded-xl lg:rounded-2xl p-3 lg:p-6 text-[#F7F3E9] shadow-lg hover:shadow-xl transition-shadow">
                     <div className="flex items-center justify-between">
-                        <div>
-                            <p className="text-sm opacity-80 mb-1">Active Vendors</p>
-                            <p className="text-3xl font-bold">{stats.uniqueVendors}</p>
-                            <p className="text-xs opacity-70 mt-1">Unique sellers</p>
+                        <div className="flex-1 min-w-0">
+                            <p className="text-xs lg:text-sm opacity-80 mb-1">Vendors</p>
+                            <p className="text-lg lg:text-3xl font-bold">{stats.uniqueVendors}</p>
+                            <p className="text-xs opacity-70 mt-1 truncate">Unique sellers</p>
                         </div>
-                        <FaUser className="text-4xl opacity-70" />
+                        <FaUser className="text-2xl lg:text-4xl opacity-70 flex-shrink-0" />
                     </div>
                 </div>
 
-                <div className="bg-[#8FBC8F] rounded-2xl p-6 text-[#F7F3E9] shadow-lg hover:shadow-xl transition-shadow">
+                <div className="bg-[#8FBC8F] rounded-xl lg:rounded-2xl p-3 lg:p-6 text-[#F7F3E9] shadow-lg hover:shadow-xl transition-shadow">
                     <div className="flex items-center justify-between">
-                        <div>
-                            <p className="text-sm opacity-80 mb-1">Total Orders</p>
-                            <p className="text-3xl font-bold">{stats.totalOrders}</p>
-                            <p className="text-xs opacity-70 mt-1">All time</p>
+                        <div className="flex-1 min-w-0">
+                            <p className="text-xs lg:text-sm opacity-80 mb-1">Orders</p>
+                            <p className="text-lg lg:text-3xl font-bold">{stats.totalOrders}</p>
+                            <p className="text-xs opacity-70 mt-1 truncate">All time</p>
                         </div>
-                        <FaShoppingBag className="text-4xl opacity-70" />
+                        <FaShoppingBag className="text-2xl lg:text-4xl opacity-70 flex-shrink-0" />
                     </div>
                 </div>
 
-                <div className="bg-[#9ACD32] rounded-2xl p-6 text-[#F7F3E9] shadow-lg hover:shadow-xl transition-shadow">
+                <div className="bg-[#9ACD32] rounded-xl lg:rounded-2xl p-3 lg:p-6 text-[#F7F3E9] shadow-lg hover:shadow-xl transition-shadow">
                     <div className="flex items-center justify-between">
-                        <div>
-                            <p className="text-sm opacity-80 mb-1">Total Revenue</p>
-                            <p className="text-2xl font-bold flex items-center">
+                        <div className="flex-1 min-w-0">
+                            <p className="text-xs lg:text-sm opacity-80 mb-1">Revenue</p>
+                            <p className="text-base lg:text-2xl font-bold flex items-center">
                                 ৳{stats.totalRevenue.toLocaleString()}
                             </p>
-                            <p className="text-xs opacity-70 mt-1">{stats.freeListings} free items</p>
+                            <p className="text-xs opacity-70 mt-1 truncate">{stats.freeListings} free items</p>
                         </div>
-                        <TbCoinTaka className="text-4xl opacity-70" />
+                        <TbCoinTaka className="text-2xl lg:text-4xl opacity-70 flex-shrink-0" />
                     </div>
                 </div>
             </div>
 
             {/* Filters */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-600 border-opacity-30">
-                <div className="flex flex-col lg:flex-row gap-4 mb-6">
+            <div className="bg-white dark:bg-gray-800 rounded-xl lg:rounded-2xl p-4 lg:p-6 shadow-lg border border-gray-200 dark:border-gray-600 border-opacity-30">
+                <div className="flex flex-col gap-3 lg:gap-4 mb-4 lg:mb-6">
                     <div className="flex-1 relative">
                         <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                         <input
                             type="text"
-                            placeholder="Search listings by name, vendor, or location..."
+                            placeholder="Search listings..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#556B2F] focus:border-transparent"
+                            className="w-full pl-10 pr-4 py-2 lg:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#556B2F] focus:border-transparent text-sm lg:text-base"
                         />
                     </div>
-                    <div className="flex gap-3">
+                    <div className="flex flex-col sm:flex-row gap-3">
                         <select
                             value={categoryFilter}
                             onChange={(e) => setCategoryFilter(e.target.value)}
@@ -260,7 +260,7 @@ const ManageListings = () => {
                                 return (
                                     <tr key={listing._id} className="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
                                         <td className="py-4 px-4">
-                                            <div className="flex items-center space-x-3">
+                                            <div className="w-64 flex items-center space-x-3">
                                                 <img
                                                     src={listing.photoURL || 'https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=50&h=50&fit=crop&crop=center'}
                                                     alt="Product"
@@ -287,7 +287,7 @@ const ManageListings = () => {
                                             </div>
                                         </td>
                                         <td className="py-4 px-4">
-                                            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-[#556B2F] text-[#F7F3E9]">
+                                            <span className="flex justify-center items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-[#556B2F] text-[#F7F3E9]">
                                                 {getCategoryIcon(listing.category)}
                                                 {getCategoryName(listing.category)}
                                             </span>
@@ -306,7 +306,7 @@ const ManageListings = () => {
                                             </div>
                                         </td>
                                         <td className="py-4 px-4">
-                                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                                            <span className={`px-2 py-1 w-18 rounded-full text-xs font-medium flex justify-center ${
                                                 orderCount > 0 
                                                     ? 'bg-blue-100 text-blue-800' 
                                                     : 'bg-gray-100 text-gray-600'

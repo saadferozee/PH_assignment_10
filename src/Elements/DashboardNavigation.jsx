@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router';
-import { FaShoppingBag, FaUserCog, FaStar, FaArrowLeft } from "react-icons/fa";
+import { FaShoppingBag, FaUserCog, FaStar, FaArrowLeft, FaBars, FaTimes } from "react-icons/fa";
 import { MdOutlineExitToApp, MdSpaceDashboard } from "react-icons/md";
 import { FaCloudMoon, FaCloudSun, FaShop } from 'react-icons/fa6';
 import AuthContext from '../Contexts/AuthContext';
@@ -8,6 +8,7 @@ import AuthContext from '../Contexts/AuthContext';
 const DashboardNavigation = ({ children }) => {
     const { user, logOut } = useContext(AuthContext);
     const [darkTheme, setDarkTheme] = useState(false);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
     const location = useLocation();
 
     const date = new Date();
@@ -40,81 +41,171 @@ const DashboardNavigation = ({ children }) => {
         else html.setAttribute("data-theme", "light");
     }, [darkTheme]);
 
-    return (
-        <div className="flex h-screen p-5 gap-5">
+    // Close sidebar when route changes on mobile
+    useEffect(() => {
+        setSidebarOpen(false);
+    }, [location.pathname]);
 
-            {/* Aside - sticky/fixed */}
-            <aside className='sticky top-5 rounded-3xl px-4 py-6 h-[calc(100vh-40px)] w-20 box-border bg-[#556B2F] text-[#F7F3E9] flex flex-col justify-between'>
+    const toggleSidebar = () => {
+        setSidebarOpen(!sidebarOpen);
+    };
+
+    return (
+        <div className="flex h-screen">
+            {/* Mobile Overlay - Only show on mobile when sidebar is open */}
+            {sidebarOpen && (
+                <div 
+                    className="fixed inset-0 bg-[#00000060] bg-opacity-50 z-40 lg:hidden"
+                    onClick={() => setSidebarOpen(false)}
+                />
+            )}
+
+            {/* Aside - Mobile: Fixed overlay, Desktop: Sticky */}
+            <aside className={`
+                ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} 
+                lg:translate-x-0 
+                fixed lg:sticky 
+                top-0 lg:top-5 
+                left-0 lg:left-auto
+                z-50 lg:z-auto
+                h-full lg:h-[calc(100vh-40px)] 
+                w-64 lg:w-20 
+                bg-[#556B2F] text-[#F7F3E9] 
+                transition-transform duration-300 ease-in-out lg:transition-none
+                lg:rounded-3xl lg:mx-5 lg:my-5
+                flex flex-col justify-between
+                px-4 py-6
+                lg:block
+            `}>
+                {/* Mobile Header */}
+                <div className="lg:hidden flex items-center justify-between mb-6 pb-4 border-b border-[#6B8E23]">
+                    <div className="flex items-center gap-2">
+                        <img className='w-8 h-8' src="/Cat-logo.png" alt="AdoptyCo" />
+                        <span className='font-caveat text-xl font-bold'>AdoptyCo</span>
+                    </div>
+                    <button 
+                        onClick={() => setSidebarOpen(false)}
+                        className="p-2 hover:bg-[#6B8E23] rounded-lg transition-colors"
+                    >
+                        <FaTimes className="text-xl" />
+                    </button>
+                </div>
+
                 <div>
                     {/* Back to Home Button */}
                     <div className="mb-6">
-                        <Link to="/" className="flex justify-center items-center">
-                            <FaArrowLeft className='text-[44px] cursor-pointer border-2 border-transparent hover:border-[#F7F3E9] rounded-lg p-2 transition-all' title="Back to Homepage" />
+                        <Link to="/" className="flex lg:justify-center items-center gap-3 lg:gap-0 hover:bg-[#6B8E23] p-2 rounded-lg transition-colors">
+                            <FaArrowLeft className='text-2xl lg:text-[44px] lg:border-2 lg:border-transparent lg:hover:border-[#F7F3E9] lg:rounded-lg lg:p-2 lg:transition-all' />
+                            <span className="lg:hidden">Back to Homepage</span>
                         </Link>
                     </div>
                     
-                    <ul className='space-y-6'>
+                    <ul className='space-y-3 lg:space-y-6'>
                         <li>
-                            <NavLink to={'/dashboard/stats'} className="flex justify-center items-center">
-                                <MdSpaceDashboard className='text-[44px] cursor-pointer border-2 border-transparent hover:border-[#F7F3E9] rounded-lg p-1 transition-all' />
+                            <NavLink 
+                                to={'/dashboard/stats'} 
+                                className={({ isActive }) => `
+                                    flex lg:justify-center items-center gap-3 lg:gap-0 p-2 rounded-lg transition-colors
+                                    ${isActive ? 'bg-[#6B8E23]' : 'hover:bg-[#6B8E23]'}
+                                `}
+                            >
+                                <MdSpaceDashboard className='text-2xl lg:text-[44px] lg:border-2 lg:border-transparent lg:hover:border-[#F7F3E9] lg:rounded-lg lg:p-1 lg:transition-all' />
+                                <span className="lg:hidden">Dashboard</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to={'/dashboard/manage-users'} className="flex justify-center items-center">
-                                <FaUserCog className='text-[44px] cursor-pointer border-2 border-transparent hover:border-[#F7F3E9] rounded-lg p-1 transition-all' />
+                            <NavLink 
+                                to={'/dashboard/manage-users'} 
+                                className={({ isActive }) => `
+                                    flex lg:justify-center items-center gap-3 lg:gap-0 p-2 rounded-lg transition-colors
+                                    ${isActive ? 'bg-[#6B8E23]' : 'hover:bg-[#6B8E23]'}
+                                `}
+                            >
+                                <FaUserCog className='text-2xl lg:text-[44px] lg:border-2 lg:border-transparent lg:hover:border-[#F7F3E9] lg:rounded-lg lg:p-1 lg:transition-all' />
+                                <span className="lg:hidden">Manage Users</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to={'/dashboard/manage-listings'} className="flex justify-center items-center">
-                                <FaShop className='text-[44px] cursor-pointer border-2 border-transparent hover:border-[#F7F3E9] rounded-lg p-1 transition-all' />
+                            <NavLink 
+                                to={'/dashboard/manage-listings'} 
+                                className={({ isActive }) => `
+                                    flex lg:justify-center items-center gap-3 lg:gap-0 p-2 rounded-lg transition-colors
+                                    ${isActive ? 'bg-[#6B8E23]' : 'hover:bg-[#6B8E23]'}
+                                `}
+                            >
+                                <FaShop className='text-2xl lg:text-[44px] lg:border-2 lg:border-transparent lg:hover:border-[#F7F3E9] lg:rounded-lg lg:p-1 lg:transition-all' />
+                                <span className="lg:hidden">Manage Listings</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to={'/dashboard/manage-orders'} className="flex justify-center items-center">
-                                <FaShoppingBag className='text-[44px] cursor-pointer border-2 border-transparent hover:border-[#F7F3E9] rounded-lg p-1 transition-all' />
+                            <NavLink 
+                                to={'/dashboard/manage-orders'} 
+                                className={({ isActive }) => `
+                                    flex lg:justify-center items-center gap-3 lg:gap-0 p-2 rounded-lg transition-colors
+                                    ${isActive ? 'bg-[#6B8E23]' : 'hover:bg-[#6B8E23]'}
+                                `}
+                            >
+                                <FaShoppingBag className='text-2xl lg:text-[44px] lg:border-2 lg:border-transparent lg:hover:border-[#F7F3E9] lg:rounded-lg lg:p-1 lg:transition-all' />
+                                <span className="lg:hidden">Manage Orders</span>
                             </NavLink>
                         </li>
                     </ul>
                 </div>
-                <div className='flex justify-center'>
-                    <button onClick={() => logOut()} className="hover:bg-[#6B8E23] rounded-lg p-2 transition-all">
-                        <MdOutlineExitToApp className='text-[44px] cursor-pointer rotate-180' />
+                
+                <div className='flex lg:justify-center'>
+                    <button 
+                        onClick={() => logOut()} 
+                        className="flex lg:justify-center items-center gap-3 lg:gap-0 hover:bg-[#6B8E23] p-2 rounded-lg transition-colors w-full lg:w-auto"
+                    >
+                        <MdOutlineExitToApp className='text-2xl lg:text-[44px] rotate-180' />
+                        <span className="lg:hidden">Logout</span>
                     </button>
                 </div>
             </aside>
 
             {/* Main content */}
-            <div className="flex-1 flex flex-col min-w-0">
-                {/* Navbar */}
-                <nav className='p-3 flex justify-between items-start'>
-                    <div className={`flex flex-col ${darkTheme ? 'text-[#F7F3E9]' : 'text-[#556B2F]'}`}>
-                        <div className="flex items-center gap-3">
-                            <span className="text-xs font-medium opacity-60 uppercase tracking-wider">
-                                Admin Dashboard
-                            </span>
-                            <span className="w-1 h-1 bg-current opacity-40 rounded-full"></span>
-                            <span className="text-xs opacity-60">{dateFull}</span>
-                        </div>
-                        <h1 className='ml-0 font-bold text-3xl mt-1 bg-gradient-to-r from-[#556B2F] to-[#6B8E23] bg-clip-text text-transparent'>
-                            {getPageTitle()}
-                        </h1>
-                    </div>
-                    <div className='flex items-center gap-4'>
+            <div className="flex-1 flex flex-col min-w-0 lg:mr-5">
+                {/* Mobile/Desktop Navbar */}
+                <nav className='p-3 lg:p-3 flex justify-between items-start'>
+                    <div className="flex items-center gap-3">
+                        {/* Mobile Menu Button */}
                         <button
-                            className={`${darkTheme ? 'text-[#F7F3E9]' : 'text-[#556B2F]'} text-xl md:text-4xl cursor-pointer hover:scale-110 transition-transform`}
+                            onClick={toggleSidebar}
+                            className="lg:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                        >
+                            <FaBars className={`text-xl ${darkTheme ? 'text-[#F7F3E9]' : 'text-[#556B2F]'}`} />
+                        </button>
+                        
+                        <div className={`flex flex-col ${darkTheme ? 'text-[#F7F3E9]' : 'text-[#556B2F]'}`}>
+                            <div className="flex items-center gap-2 lg:gap-3">
+                                <span className="text-xs font-medium opacity-60 uppercase tracking-wider">
+                                    Admin Dashboard
+                                </span>
+                                <span className="w-1 h-1 bg-current opacity-40 rounded-full hidden sm:block"></span>
+                                <span className="text-xs opacity-60 hidden sm:block">{dateFull}</span>
+                            </div>
+                            <h1 className='ml-0 font-bold text-xl sm:text-2xl lg:text-3xl mt-1 bg-gradient-to-r from-[#556B2F] to-[#6B8E23] bg-clip-text text-transparent'>
+                                {getPageTitle()}
+                            </h1>
+                        </div>
+                    </div>
+                    
+                    <div className='flex items-center gap-2 lg:gap-4'>
+                        <button
+                            className={`${darkTheme ? 'text-[#F7F3E9]' : 'text-[#556B2F]'} text-lg lg:text-xl xl:text-4xl cursor-pointer hover:scale-110 transition-transform`}
                             title='Click to change theme.'
                             onClick={() => setDarkTheme(!darkTheme)}
                         >
                             {darkTheme ? <FaCloudMoon /> : <FaCloudSun />}
                         </button>
                         
-                        {/* Review Button */}
+                        {/* Review Button - Hidden on small screens */}
                         <button
-                            className={`${darkTheme ? 'text-[#F7F3E9] hover:bg-gray-700' : 'text-[#556B2F] hover:bg-gray-100'} p-2 rounded-lg transition-all flex items-center gap-2`}
+                            className={`${darkTheme ? 'text-[#F7F3E9] hover:bg-gray-700' : 'text-[#556B2F] hover:bg-gray-100'} p-2 rounded-lg transition-all items-center gap-2 hidden md:flex`}
                             title='View Reviews'
                         >
-                            <FaStar className="text-xl md:text-2xl" />
-                            <span className="hidden md:inline text-sm font-medium">Reviews</span>
+                            <FaStar className="text-lg lg:text-xl xl:text-2xl" />
+                            <span className="hidden lg:inline text-sm font-medium">Reviews</span>
                         </button>
                         
                         <div className="dropdown">
@@ -122,15 +213,14 @@ const DashboardNavigation = ({ children }) => {
                                 {user.photoURL ? (
                                     <img
                                         title={`click to go Profile of User: ${user.displayName}`}
-                                        className={`w-8 h-8 md:w-12 md:h-12 object-cover border-2 ${darkTheme ? 'border-[#F7F3E9]' : 'border-[#556B2F]'} p-0.5 rounded-full hover:scale-105 transition-transform cursor-pointer`}
+                                        className={`w-6 h-6 sm:w-8 sm:h-8 lg:w-12 lg:h-12 object-cover border-2 ${darkTheme ? 'border-[#F7F3E9]' : 'border-[#556B2F]'} p-0.5 rounded-full hover:scale-105 transition-transform cursor-pointer`}
                                         src={user.photoURL}
                                         alt="DP"
                                     />
                                 ) : (
                                     <img
                                         title={`click to go Profile of User: ${user.displayName}`}
-                                        width={40}
-                                        className='rounded-full hover:scale-105 transition-transform cursor-pointer'
+                                        className='w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full hover:scale-105 transition-transform cursor-pointer'
                                         src='https://img.icons8.com/ink/96/f7f3e9/user-male-circle.png'
                                         alt="DP"
                                     />
@@ -146,7 +236,7 @@ const DashboardNavigation = ({ children }) => {
                 </nav>
 
                 {/* Scrollable children */}
-                <div className="flex-1 overflow-auto mt-3">
+                <div className="flex-1 overflow-auto mt-1 lg:mt-3">
                     {children}
                 </div>
             </div>

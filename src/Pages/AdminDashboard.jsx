@@ -286,15 +286,15 @@ const AdminDashboard = () => {
     }
 
     return (
-        <div className="p-6 space-y-6">
-            <div className="mb-8">
-                <p className="text-gray-600 dark:text-gray-300">
+        <div className="p-3 sm:p-4 lg:p-6 space-y-4 lg:space-y-6">
+            <div className="mb-4 lg:mb-8">
+                <p className="text-gray-600 dark:text-gray-300 text-sm lg:text-base">
                     Monitor your platform's performance and growth with comprehensive analytics
                 </p>
             </div>
 
-            {/* Primary Stats Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Primary Stats Cards Grid - Mobile Optimized */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6">
                 <StatsCard
                     title="Total Users"
                     value={stats.totalUsers.toLocaleString()}
@@ -302,6 +302,7 @@ const AdminDashboard = () => {
                     trend={stats.growthRate >= 0 ? "up" : "down"}
                     trendValue={`${stats.growthRate >= 0 ? '+' : ''}${stats.growthRate.toFixed(1)}% growth`}
                     color="bg-[#556B2F]"
+                    mobile={true}
                 />
                 <StatsCard
                     title="Total Listings"
@@ -310,6 +311,7 @@ const AdminDashboard = () => {
                     trend="up"
                     trendValue={`+${stats.newListingsThisWeek} this week`}
                     color="bg-[#6B8E23]"
+                    mobile={true}
                 />
                 <StatsCard
                     title="Total Orders"
@@ -318,6 +320,7 @@ const AdminDashboard = () => {
                     trend="up"
                     trendValue={`${stats.ordersToday} today`}
                     color="bg-[#8FBC8F]"
+                    mobile={true}
                 />
                 <StatsCard
                     title="Total Revenue"
@@ -326,11 +329,12 @@ const AdminDashboard = () => {
                     trend="up"
                     trendValue={`৳${stats.revenueThisMonth.toLocaleString()} this month`}
                     color="bg-[#9ACD32]"
+                    mobile={true}
                 />
             </div>
 
-            {/* Secondary Stats Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Secondary Stats Cards Grid - Mobile Optimized */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6">
                 <StatsCard
                     title="Pending Orders"
                     value={stats.pendingOrders.toLocaleString()}
@@ -338,6 +342,7 @@ const AdminDashboard = () => {
                     trend="neutral"
                     trendValue="Awaiting processing"
                     color="bg-yellow-500"
+                    mobile={true}
                 />
                 <StatsCard
                     title="Completed Orders"
@@ -346,6 +351,7 @@ const AdminDashboard = () => {
                     trend="up"
                     trendValue={`${((stats.completedOrders / stats.totalOrders) * 100).toFixed(1)}% completion rate`}
                     color="bg-green-500"
+                    mobile={true}
                 />
                 <StatsCard
                     title="Average Order Value"
@@ -354,6 +360,7 @@ const AdminDashboard = () => {
                     trend="up"
                     trendValue="Per order"
                     color="bg-blue-500"
+                    mobile={true}
                 />
                 <StatsCard
                     title="Conversion Rate"
@@ -362,156 +369,161 @@ const AdminDashboard = () => {
                     trend={stats.conversionRate > 50 ? "up" : "neutral"}
                     trendValue="Orders per listing"
                     color="bg-purple-500"
+                    mobile={true}
                 />
             </div>
 
-            {/* Tertiary Stats Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-200 dark:border-gray-600 border-opacity-30">
-                    <div className="flex items-center justify-between">
+            {/* Tertiary Stats Cards Grid - Mobile: 2 columns, Desktop: 6 columns */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 lg:gap-4">
+                <div className="bg-white dark:bg-gray-800 rounded-lg lg:rounded-xl p-3 lg:p-4 shadow-lg border border-gray-200 dark:border-gray-600 border-opacity-30">
+                    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                         <div>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">Admin Users</p>
-                            <p className="text-2xl font-bold text-[#556B2F]">{stats.adminUsers}</p>
+                            <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Admin Users</p>
+                            <p className="text-lg lg:text-2xl font-bold text-[#556B2F]">{stats.adminUsers}</p>
                         </div>
-                        <FaUserCog className="text-2xl text-[#556B2F] opacity-70" />
+                        <FaUserCog className="text-lg lg:text-2xl text-[#556B2F] opacity-70 mt-1 lg:mt-0" />
                     </div>
                 </div>
                 
-                <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-200 dark:border-gray-600 border-opacity-30">
-                    <div className="flex items-center justify-between">
+                <div className="bg-white dark:bg-gray-800 rounded-lg lg:rounded-xl p-3 lg:p-4 shadow-lg border border-gray-200 dark:border-gray-600 border-opacity-30">
+                    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                         <div>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">Free Listings</p>
-                            <p className="text-2xl font-bold text-green-600">{stats.freeListings}</p>
+                            <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Free Listings</p>
+                            <p className="text-lg lg:text-2xl font-bold text-green-600">{stats.freeListings}</p>
                         </div>
-                        <FaHeart className="text-2xl text-green-600 opacity-70" />
+                        <FaHeart className="text-lg lg:text-2xl text-green-600 opacity-70 mt-1 lg:mt-0" />
                     </div>
                 </div>
                 
-                <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-200 dark:border-gray-600 border-opacity-30">
-                    <div className="flex items-center justify-between">
+                <div className="bg-white dark:bg-gray-800 rounded-lg lg:rounded-xl p-3 lg:p-4 shadow-lg border border-gray-200 dark:border-gray-600 border-opacity-30">
+                    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                         <div>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">Paid Listings</p>
-                            <p className="text-2xl font-bold text-blue-600">{stats.paidListings}</p>
+                            <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Paid Listings</p>
+                            <p className="text-lg lg:text-2xl font-bold text-blue-600">{stats.paidListings}</p>
                         </div>
-                        <TbCoinTaka className="text-2xl text-blue-600 opacity-70" />
+                        <TbCoinTaka className="text-lg lg:text-2xl text-blue-600 opacity-70 mt-1 lg:mt-0" />
                     </div>
                 </div>
                 
-                <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-200 dark:border-gray-600 border-opacity-30">
-                    <div className="flex items-center justify-between">
+                <div className="bg-white dark:bg-gray-800 rounded-lg lg:rounded-xl p-3 lg:p-4 shadow-lg border border-gray-200 dark:border-gray-600 border-opacity-30">
+                    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                         <div>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">Recent Users</p>
-                            <p className="text-2xl font-bold text-purple-600">{stats.recentUsers}</p>
+                            <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Recent Users</p>
+                            <p className="text-lg lg:text-2xl font-bold text-purple-600">{stats.recentUsers}</p>
                         </div>
-                        <FaCalendarAlt className="text-2xl text-purple-600 opacity-70" />
+                        <FaCalendarAlt className="text-lg lg:text-2xl text-purple-600 opacity-70 mt-1 lg:mt-0" />
                     </div>
                 </div>
                 
-                <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-200 dark:border-gray-600 border-opacity-30">
-                    <div className="flex items-center justify-between">
+                <div className="bg-white dark:bg-gray-800 rounded-lg lg:rounded-xl p-3 lg:p-4 shadow-lg border border-gray-200 dark:border-gray-600 border-opacity-30">
+                    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                         <div>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">Top Category</p>
-                            <p className="text-lg font-bold text-orange-600 capitalize">{stats.topCategory}</p>
+                            <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Top Category</p>
+                            <p className="text-sm lg:text-lg font-bold text-orange-600 capitalize">{stats.topCategory}</p>
                         </div>
-                        <MdTrendingUp className="text-2xl text-orange-600 opacity-70" />
+                        <MdTrendingUp className="text-lg lg:text-2xl text-orange-600 opacity-70 mt-1 lg:mt-0" />
                     </div>
                 </div>
                 
-                <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-200 dark:border-gray-600 border-opacity-30">
-                    <div className="flex items-center justify-between">
+                <div className="bg-white dark:bg-gray-800 rounded-lg lg:rounded-xl p-3 lg:p-4 shadow-lg border border-gray-200 dark:border-gray-600 border-opacity-30">
+                    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                         <div>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">Cancelled</p>
-                            <p className="text-2xl font-bold text-red-600">{stats.cancelledOrders}</p>
+                            <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Cancelled</p>
+                            <p className="text-lg lg:text-2xl font-bold text-red-600">{stats.cancelledOrders}</p>
                         </div>
-                        <MdCancel className="text-2xl text-red-600 opacity-70" />
+                        <MdCancel className="text-lg lg:text-2xl text-red-600 opacity-70 mt-1 lg:mt-0" />
                     </div>
                 </div>
             </div>
 
-            {/* Charts Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <ChartCard title="User Growth (Last 7 Days)">
+            {/* Charts Grid - Mobile: 1 column, Desktop: 2 columns */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
+                <ChartCard title="User Growth (Last 7 Days)" mobile={true}>
                     {userGrowthData && (
                         <Line data={userGrowthData} options={lineChartOptions} />
                     )}
                 </ChartCard>
 
-                <ChartCard title="Listing Categories">
+                <ChartCard title="Listing Categories" mobile={true}>
                     {categoryData && (
                         <Doughnut data={categoryData} options={doughnutChartOptions} />
                     )}
                 </ChartCard>
 
-                <ChartCard title="Order Status Distribution">
+                <ChartCard title="Order Status Distribution" mobile={true}>
                     {orderStatusData && (
                         <Pie data={orderStatusData} options={doughnutChartOptions} />
                     )}
                 </ChartCard>
 
-                <ChartCard title="Revenue Trends (Last 30 Days)">
+                <ChartCard title="Revenue Trends (Last 30 Days)" mobile={true}>
                     {revenueData && (
                         <Line data={revenueData} options={lineChartOptions} />
                     )}
                 </ChartCard>
             </div>
 
-            {/* Order Trends Chart */}
-            <div className="grid grid-cols-1 gap-6">
-                <ChartCard title="Order Trends (Last 30 Days)" className="col-span-full">
+            {/* Order Trends Chart - Full Width */}
+            <div className="grid grid-cols-1 gap-4 lg:gap-6">
+                <ChartCard title="Order Trends (Last 30 Days)" className="col-span-full" mobile={true}>
                     {orderTrends && (
                         <Bar data={orderTrends} options={chartOptions} />
                     )}
                 </ChartCard>
             </div>
 
-            {/* Performance Insights */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-600 border-opacity-30">
-                <h3 className="text-xl font-semibold text-[#556B2F] dark:text-[#F7F3E9] mb-4">
+            {/* Performance Insights - Mobile Optimized */}
+            <div className="bg-white dark:bg-gray-800 rounded-xl lg:rounded-2xl p-4 lg:p-6 shadow-lg border border-gray-200 dark:border-gray-600 border-opacity-30">
+                <h3 className="text-lg lg:text-xl font-semibold text-[#556B2F] dark:text-[#F7F3E9] mb-3 lg:mb-4">
                     Performance Insights
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div className="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 rounded-lg p-4">
-                        <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">User Engagement</h4>
-                        <p className="text-sm text-blue-600 dark:text-blue-300">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
+                    <div className="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 rounded-lg p-3 lg:p-4">
+                        <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2 text-sm lg:text-base">User Engagement</h4>
+                        <p className="text-xs lg:text-sm text-blue-600 dark:text-blue-300">
                             {stats.recentUsers} new users joined in the last 7 days, showing {stats.growthRate >= 0 ? 'positive' : 'negative'} growth trend.
                         </p>
                     </div>
-                    <div className="bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 rounded-lg p-4">
-                        <h4 className="font-semibold text-green-800 dark:text-green-200 mb-2">Order Performance</h4>
-                        <p className="text-sm text-green-600 dark:text-green-300">
+                    <div className="bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 rounded-lg p-3 lg:p-4">
+                        <h4 className="font-semibold text-green-800 dark:text-green-200 mb-2 text-sm lg:text-base">Order Performance</h4>
+                        <p className="text-xs lg:text-sm text-green-600 dark:text-green-300">
                             {((stats.completedOrders / stats.totalOrders) * 100).toFixed(1)}% order completion rate with ৳{stats.averageOrderValue.toFixed(0)} average value.
                         </p>
                     </div>
-                    <div className="bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 rounded-lg p-4">
-                        <h4 className="font-semibold text-purple-800 dark:text-purple-200 mb-2">Market Activity</h4>
-                        <p className="text-sm text-purple-600 dark:text-purple-300">
+                    <div className="bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 rounded-lg p-3 lg:p-4">
+                        <h4 className="font-semibold text-purple-800 dark:text-purple-200 mb-2 text-sm lg:text-base">Market Activity</h4>
+                        <p className="text-xs lg:text-sm text-purple-600 dark:text-purple-300">
                             {stats.topCategory} is the most popular category with {stats.conversionRate.toFixed(1)}% conversion rate.
                         </p>
                     </div>
                 </div>
             </div>
 
-            {/* Quick Actions */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-600 border-opacity-30">
-                <h3 className="text-xl font-semibold text-[#556B2F] dark:text-[#F7F3E9] mb-4">
+            {/* Quick Actions - Mobile Optimized */}
+            <div className="bg-white dark:bg-gray-800 rounded-xl lg:rounded-2xl p-4 lg:p-6 shadow-lg border border-gray-200 dark:border-gray-600 border-opacity-30">
+                <h3 className="text-lg lg:text-xl font-semibold text-[#556B2F] dark:text-[#F7F3E9] mb-3 lg:mb-4">
                     Quick Actions
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <button className="p-4 bg-[#556B2F] text-[#F7F3E9] rounded-lg hover:bg-[#6B8E23] transition-colors flex items-center gap-2">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
+                    <button className="p-3 lg:p-4 bg-[#556B2F] text-[#F7F3E9] rounded-lg hover:bg-[#6B8E23] transition-colors flex items-center gap-2 text-sm lg:text-base">
                         <FaEye />
-                        View All Orders
+                        <span className="hidden sm:inline">View All Orders</span>
+                        <span className="sm:hidden">Orders</span>
                     </button>
-                    <button className="p-4 bg-[#556B2F] text-[#F7F3E9] rounded-lg hover:bg-[#6B8E23] transition-colors flex items-center gap-2">
+                    <button className="p-3 lg:p-4 bg-[#556B2F] text-[#F7F3E9] rounded-lg hover:bg-[#6B8E23] transition-colors flex items-center gap-2 text-sm lg:text-base">
                         <FaUsers />
-                        Manage Users
+                        <span className="hidden sm:inline">Manage Users</span>
+                        <span className="sm:hidden">Users</span>
                     </button>
-                    <button className="p-4 bg-[#556B2F] text-[#F7F3E9] rounded-lg hover:bg-[#6B8E23] transition-colors flex items-center gap-2">
+                    <button className="p-3 lg:p-4 bg-[#556B2F] text-[#F7F3E9] rounded-lg hover:bg-[#6B8E23] transition-colors flex items-center gap-2 text-sm lg:text-base">
                         <MdPets />
-                        View Listings
+                        <span className="hidden sm:inline">View Listings</span>
+                        <span className="sm:hidden">Listings</span>
                     </button>
-                    <button className="p-4 bg-[#556B2F] text-[#F7F3E9] rounded-lg hover:bg-[#6B8E23] transition-colors flex items-center gap-2">
+                    <button className="p-3 lg:p-4 bg-[#556B2F] text-[#F7F3E9] rounded-lg hover:bg-[#6B8E23] transition-colors flex items-center gap-2 text-sm lg:text-base">
                         <FaChartLine />
-                        Export Report
+                        <span className="hidden sm:inline">Export Report</span>
+                        <span className="sm:hidden">Report</span>
                     </button>
                 </div>
             </div>

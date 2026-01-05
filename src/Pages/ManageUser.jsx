@@ -149,55 +149,55 @@ const ManageUser = () => {
     }
 
     return (
-        <div className="p-6 space-y-6">
+        <div className="p-3 sm:p-4 lg:p-6 space-y-4 lg:space-y-6">
             <title>AdoptyCo | Manage Users</title>
             
             {/* Header */}
-            <div className="mb-8">
-                <p className="text-gray-600 dark:text-gray-300">
+            <div className="mb-4 lg:mb-8">
+                <p className="text-gray-600 dark:text-gray-300 text-sm lg:text-base">
                     Manage user accounts, roles, and permissions
                 </p>
             </div>
 
-            {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                <div className="bg-[#556B2F] rounded-2xl p-6 text-[#F7F3E9] shadow-lg">
+            {/* Stats Cards - Mobile: 1 column, Tablet: 2 columns, Desktop: 3 columns */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-6 mb-4 lg:mb-6">
+                <div className="bg-[#556B2F] rounded-xl lg:rounded-2xl p-4 lg:p-6 text-[#F7F3E9] shadow-lg">
                     <div className="flex items-center justify-between">
-                        <div>
-                            <p className="text-sm opacity-80 mb-1">Total Users</p>
-                            <p className="text-3xl font-bold">{stats.totalUsers}</p>
+                        <div className="flex-1 min-w-0">
+                            <p className="text-xs lg:text-sm opacity-80 mb-1">Users</p>
+                            <p className="text-xl lg:text-3xl font-bold">{stats.totalUsers}</p>
                         </div>
-                        <FaUsers className="text-4xl opacity-70" />
+                        <FaUsers className="text-3xl lg:text-4xl opacity-70 flex-shrink-0" />
                     </div>
                 </div>
-                <div className="bg-[#6B8E23] rounded-2xl p-6 text-[#F7F3E9] shadow-lg">
+                <div className="bg-[#6B8E23] rounded-xl lg:rounded-2xl p-4 lg:p-6 text-[#F7F3E9] shadow-lg">
                     <div className="flex items-center justify-between">
-                        <div>
-                            <p className="text-sm opacity-80 mb-1">Admin Users</p>
-                            <p className="text-3xl font-bold">{stats.adminUsers}</p>
+                        <div className="flex-1 min-w-0">
+                            <p className="text-xs lg:text-sm opacity-80 mb-1">Admins</p>
+                            <p className="text-xl lg:text-3xl font-bold">{stats.adminUsers}</p>
                         </div>
-                        <MdAdminPanelSettings className="text-4xl opacity-70" />
+                        <MdAdminPanelSettings className="text-3xl lg:text-4xl opacity-70 flex-shrink-0" />
                     </div>
                 </div>
-                <div className="bg-[#8FBC8F] rounded-2xl p-6 text-[#F7F3E9] shadow-lg">
+                <div className="bg-[#8FBC8F] rounded-xl lg:rounded-2xl p-4 lg:p-6 text-[#F7F3E9] shadow-lg">
                     <div className="flex items-center justify-between">
-                        <div>
-                            <p className="text-sm opacity-80 mb-1">Regular Users</p>
-                            <p className="text-3xl font-bold">{stats.regularUsers}</p>
+                        <div className="flex-1 min-w-0">
+                            <p className="text-xs lg:text-sm opacity-80 mb-1">Regular</p>
+                            <p className="text-xl lg:text-3xl font-bold">{stats.regularUsers}</p>
                         </div>
-                        <MdPerson className="text-4xl opacity-70" />
+                        <MdPerson className="text-3xl lg:text-4xl opacity-70 flex-shrink-0" />
                     </div>
                 </div>
             </div>
 
             {/* Filters */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-600 border-opacity-30">
-                <div className="flex flex-col md:flex-row gap-4 mb-6">
+            <div className="bg-white dark:bg-gray-800 rounded-xl lg:rounded-2xl p-4 lg:p-6 shadow-lg border border-gray-200 dark:border-gray-600 border-opacity-30">
+                <div className="flex flex-col gap-3 lg:gap-4 mb-4 lg:mb-6">
                     <div className="flex-1 relative">
                         <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2" />
                         <input
                             type="text"
-                            placeholder="Search users by email or name..."
+                            placeholder="Search users..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#556B2F] focus:border-transparent"

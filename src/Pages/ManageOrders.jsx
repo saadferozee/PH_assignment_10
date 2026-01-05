@@ -186,83 +186,83 @@ const ManageOrders = () => {
     }
 
     return (
-        <div className="p-6 space-y-6">
+        <div className="p-3 sm:p-4 lg:p-6 space-y-4 lg:space-y-6">
             <title>AdoptyCo | Manage Orders</title>
             
             {/* Header */}
-            <div className="mb-8">
-                <p className="text-gray-600 dark:text-gray-300">
+            <div className="mb-4 lg:mb-8">
+                <p className="text-gray-600 dark:text-gray-300 text-sm lg:text-base">
                     Manage customer orders, track status, and monitor sales performance
                 </p>
             </div>
 
-            {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-                <div className="bg-[#556B2F] rounded-2xl p-6 text-[#F7F3E9] shadow-lg hover:shadow-xl transition-shadow">
+            {/* Stats Cards - Mobile: 2 columns, Desktop: 4 columns */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6 mb-4 lg:mb-6">
+                <div className="bg-[#556B2F] rounded-xl lg:rounded-2xl p-3 lg:p-6 text-[#F7F3E9] shadow-lg hover:shadow-xl transition-shadow">
                     <div className="flex items-center justify-between">
-                        <div>
-                            <p className="text-sm opacity-80 mb-1">Total Orders</p>
-                            <p className="text-3xl font-bold">{stats.totalOrders}</p>
-                            <p className="text-xs opacity-70 mt-1">All time</p>
+                        <div className="flex-1 min-w-0">
+                            <p className="text-xs lg:text-sm opacity-80 mb-1">Orders</p>
+                            <p className="text-lg lg:text-3xl font-bold">{stats.totalOrders}</p>
+                            <p className="text-xs opacity-70 mt-1 truncate">All time</p>
                         </div>
-                        <FaShoppingBag className="text-4xl opacity-70" />
+                        <FaShoppingBag className="text-2xl lg:text-4xl opacity-70 flex-shrink-0" />
                     </div>
                 </div>
                 
-                <div className="bg-[#6B8E23] rounded-2xl p-6 text-[#F7F3E9] shadow-lg hover:shadow-xl transition-shadow">
+                <div className="bg-[#6B8E23] rounded-xl lg:rounded-2xl p-3 lg:p-6 text-[#F7F3E9] shadow-lg hover:shadow-xl transition-shadow">
                     <div className="flex items-center justify-between">
-                        <div>
-                            <p className="text-sm opacity-80 mb-1">Pending Orders</p>
-                            <p className="text-3xl font-bold">{stats.pendingOrders}</p>
-                            <p className="text-xs opacity-70 mt-1">Awaiting processing</p>
+                        <div className="flex-1 min-w-0">
+                            <p className="text-xs lg:text-sm opacity-80 mb-1">Pending</p>
+                            <p className="text-lg lg:text-3xl font-bold">{stats.pendingOrders}</p>
+                            <p className="text-xs opacity-70 mt-1 truncate">Awaiting processing</p>
                         </div>
-                        <FaClock className="text-4xl opacity-70" />
+                        <FaClock className="text-2xl lg:text-4xl opacity-70 flex-shrink-0" />
                     </div>
                 </div>
 
-                <div className="bg-[#8FBC8F] rounded-2xl p-6 text-[#F7F3E9] shadow-lg hover:shadow-xl transition-shadow">
+                <div className="bg-[#8FBC8F] rounded-xl lg:rounded-2xl p-3 lg:p-6 text-[#F7F3E9] shadow-lg hover:shadow-xl transition-shadow">
                     <div className="flex items-center justify-between">
-                        <div>
-                            <p className="text-sm opacity-80 mb-1">Completed Orders</p>
-                            <p className="text-3xl font-bold">{stats.completedOrders}</p>
-                            <p className="text-xs opacity-70 mt-1">Successfully delivered</p>
+                        <div className="flex-1 min-w-0">
+                            <p className="text-xs lg:text-sm opacity-80 mb-1">Completed</p>
+                            <p className="text-lg lg:text-3xl font-bold">{stats.completedOrders}</p>
+                            <p className="text-xs opacity-70 mt-1 truncate">Successfully delivered</p>
                         </div>
-                        <FaCheckCircle className="text-4xl opacity-70" />
+                        <FaCheckCircle className="text-2xl lg:text-4xl opacity-70 flex-shrink-0" />
                     </div>
                 </div>
 
-                <div className="bg-[#9ACD32] rounded-2xl p-6 text-[#F7F3E9] shadow-lg hover:shadow-xl transition-shadow">
+                <div className="bg-[#9ACD32] rounded-xl lg:rounded-2xl p-3 lg:p-6 text-[#F7F3E9] shadow-lg hover:shadow-xl transition-shadow">
                     <div className="flex items-center justify-between">
-                        <div>
-                            <p className="text-sm opacity-80 mb-1">Total Revenue</p>
-                            <p className="text-2xl font-bold flex items-center">
+                        <div className="flex-1 min-w-0">
+                            <p className="text-xs lg:text-sm opacity-80 mb-1">Revenue</p>
+                            <p className="text-base lg:text-2xl font-bold flex items-center">
                                 ৳{stats.totalRevenue.toLocaleString()}
                             </p>
-                            <p className="text-xs opacity-70 mt-1">From completed orders</p>
+                            <p className="text-xs opacity-70 mt-1 truncate">From completed orders</p>
                         </div>
-                        <TbCoinTaka className="text-4xl opacity-70" />
+                        <TbCoinTaka className="text-2xl lg:text-4xl opacity-70 flex-shrink-0" />
                     </div>
                 </div>
             </div>
 
             {/* Filters */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-600 border-opacity-30">
-                <div className="flex flex-col lg:flex-row gap-4 mb-6">
+            <div className="bg-white dark:bg-gray-800 rounded-xl lg:rounded-2xl p-4 lg:p-6 shadow-lg border border-gray-200 dark:border-gray-600 border-opacity-30">
+                <div className="flex flex-col gap-3 lg:gap-4 mb-4 lg:mb-6">
                     <div className="flex-1 relative">
                         <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                         <input
                             type="text"
-                            placeholder="Search orders by customer, product, or order details..."
+                            placeholder="Search orders..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#556B2F] focus:border-transparent"
+                            className="w-full pl-10 pr-4 py-2 lg:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#556B2F] focus:border-transparent text-sm lg:text-base"
                         />
                     </div>
-                    <div className="flex gap-3">
+                    <div className="flex flex-col sm:flex-row gap-3">
                         <select
                             value={statusFilter}
                             onChange={(e) => setStatusFilter(e.target.value)}
-                            className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#556B2F] focus:border-transparent"
+                            className="px-3 lg:px-4 py-2 lg:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#556B2F] focus:border-transparent text-sm lg:text-base"
                         >
                             <option value="all">All Status</option>
                             <option value="pending">Pending</option>
@@ -273,7 +273,7 @@ const ManageOrders = () => {
                         <select
                             value={dateFilter}
                             onChange={(e) => setDateFilter(e.target.value)}
-                            className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#556B2F] focus:border-transparent"
+                            className="px-3 lg:px-4 py-2 lg:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#556B2F] focus:border-transparent text-sm lg:text-base"
                         >
                             <option value="all">All Time</option>
                             <option value="today">Today</option>
@@ -283,8 +283,8 @@ const ManageOrders = () => {
                     </div>
                 </div>
 
-                {/* Orders Table */}
-                <div className="overflow-x-auto border border-gray-200 dark:border-gray-600 border-opacity-30 rounded-xl">
+                {/* Orders Table - Mobile: Card view, Desktop: Table view */}
+                <div className="hidden lg:block overflow-x-auto border border-gray-200 dark:border-gray-600 border-opacity-30 rounded-xl">
                     <table className="w-full table-auto">
                         <thead>
                             <tr className="border-b border-gray-200 dark:border-gray-700">
@@ -397,6 +397,98 @@ const ManageOrders = () => {
                             })}
                         </tbody>
                     </table>
+                    
+                    {filteredOrders.length === 0 && (
+                        <div className="text-center py-8">
+                            <p className="text-gray-500 dark:text-gray-400">No orders found matching your criteria.</p>
+                        </div>
+                    )}
+                </div>
+
+                {/* Mobile Card View */}
+                <div className="lg:hidden space-y-3">
+                    {filteredOrders.map((order) => {
+                        const productInfo = getProductInfo(order.productId);
+                        const customerInfo = getCustomerInfo(order.buyerEmail);
+                        
+                        return (
+                            <div key={order._id} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600">
+                                <div className="flex items-start justify-between mb-3">
+                                    <div className="flex items-center space-x-3">
+                                        <img
+                                            src={customerInfo.photoURL || 'https://img.icons8.com/ink/96/556B2F/user-male-circle.png'}
+                                            alt="Customer"
+                                            className={`w-10 h-10 rounded-full object-cover ${ customerInfo.photoURL && 'border-2 border-[#556B2F]'}`}
+                                        />
+                                        <div>
+                                            <p className="font-medium text-gray-900 dark:text-gray-100 text-sm">
+                                                {order.buyerName || customerInfo.name || 'Unknown Customer'}
+                                            </p>
+                                            <p className="text-xs text-gray-500 dark:text-gray-400">
+                                                #{order._id.slice(-8).toUpperCase()}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(order.status || 'pending')}`}>
+                                        {getStatusIcon(order.status || 'pending')}
+                                        {((order.status || 'pending').charAt(0).toUpperCase() + (order.status || 'pending').slice(1))}
+                                    </span>
+                                </div>
+                                
+                                <div className="flex items-center space-x-3 mb-3">
+                                    <img
+                                        src={productInfo.photoURL || 'https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=50&h=50&fit=crop&crop=center'}
+                                        alt="Product"
+                                        className="w-12 h-12 rounded-lg object-cover border-2 border-[#556B2F]"
+                                    />
+                                    <div className="flex-1">
+                                        <p className="font-medium text-gray-900 dark:text-gray-100 text-sm">
+                                            {order.productName || productInfo.name || 'Product Not Found'}
+                                        </p>
+                                        <div className="flex items-center justify-between mt-1">
+                                            <span className="text-xs text-gray-500 dark:text-gray-400">
+                                                {new Date(order.date).toLocaleDateString()}
+                                            </span>
+                                            <div className="flex items-center">
+                                                {parseInt(order.price) === 0 ? (
+                                                    <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
+                                                        Free
+                                                    </span>
+                                                ) : (
+                                                    <span className="flex items-center font-medium text-gray-900 dark:text-gray-100 text-sm">
+                                                        ৳{parseInt(order.price).toLocaleString()}
+                                                    </span>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="flex items-center justify-end space-x-2">
+                                    <button
+                                        onClick={() => handleViewOrder(order)}
+                                        className="px-3 py-1 text-blue-600 hover:bg-blue-100 rounded-lg transition-colors text-sm flex items-center gap-1"
+                                    >
+                                        <FaEye />
+                                        View
+                                    </button>
+                                    <button
+                                        onClick={() => {
+                                            const currentStatus = order.status || 'pending';
+                                            const nextStatus = currentStatus === 'pending' ? 'processing' :
+                                                             currentStatus === 'processing' ? 'completed' :
+                                                             currentStatus === 'completed' ? 'pending' : 'pending';
+                                            handleStatusChange(order._id, nextStatus);
+                                        }}
+                                        className="px-3 py-1 text-green-600 hover:bg-green-100 rounded-lg transition-colors text-sm flex items-center gap-1"
+                                    >
+                                        <FaEdit />
+                                        Update
+                                    </button>
+                                </div>
+                            </div>
+                        );
+                    })}
                     
                     {filteredOrders.length === 0 && (
                         <div className="text-center py-8">

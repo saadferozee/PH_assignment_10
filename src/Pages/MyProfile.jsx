@@ -1,75 +1,316 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import AuthContext from '../Contexts/AuthContext';
+import { FaUser, FaEnvelope, FaEdit, FaSave, FaTimes, FaCamera, FaCalendarAlt, FaShieldAlt, FaHeart, FaShoppingBag, FaStore } from 'react-icons/fa';
+import { MdVerified } from 'react-icons/md';
 
 const MyProfile = () => {
-    const { user, updateUser } = useContext(AuthContext);
+    const { user, updateUser, role } = useContext(AuthContext);
     const [formOpen, setFormOpen] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [imagePreview, setImagePreview] = useState('');
+    const [formData, setFormData] = useState({
+        name: '',
+        photoURL: ''
+    });
+    const [stats] = useState({
+        listings: 12,
+        orders: 8,
+        favorites: 24
+    });
 
-    const handleUpdateProfileForm = e => {
+    useEffect(() => {
+        if (user) {
+            setFormData({
+                name: user.displayName || '',
+                photoURL: user.photoURL || ''
+            });
+            setImagePreview(user.photoURL || '');
+        }
+    }, [user]);
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+        
+        if (name === 'photoURL') {
+            setImagePreview(value);
+        }
+    };
+
+    const handleUpdateProfileForm = async (e) => {
         e.preventDefault();
-        const name = e.target.name.value;
-        const photoURL = e.target.photoURL.value;
-        updateUser(name, photoURL)
-        .then(() => {
+        setLoading(true);
+        
+        try {
+            await updateUser(formData.name, formData.photoURL);
             setFormOpen(false);
-        }).catch(error => {
-            console.log(error)
-        })
+            // Show success message (you can add a toast notification here)
+        } catch (error) {
+            console.error('Error updating profile:', error);
+            // Show error message (you can add a toast notification here)
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleCancel = () => {
+        setFormOpen(false);
+        setFormData({
+            name: user.displayName || '',
+            photoURL: user.photoURL || ''
+        });
+        setImagePreview(user.photoURL || '');
+    };
+
+    const formatDate = (dateString) => {
+        if (!dateString) return 'Not available';
+        return new Date(dateString).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    };
+
+    const getRoleBadge = (userRole) => {
+        const roleConfig = {
+            admin: { color: 'bg-red-500', text: 'Admin', icon: FaShieldAlt },
+            user: { color: 'bg-blue-500', text: 'User', icon: FaUser }
+        };
+        
+        const config = roleConfig[userRole] || roleConfig.user;
+        const IconComponent = config.icon;
+        
+        return (
+            <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-white text-sm font-medium ${config.color}`}>
+                <IconComponent className="text-xs" />
+                {config.text}
+            </div>
+        );
+    };
+
+    if (!user) {
+        return (
+            <div className='min-h-screen flex items-center justify-center bg-linear-to-br from-[#F7F3E9] to-[#E8E0D0]'>
+                <div className='text-center p-8 bg-white rounded-2xl shadow-xl'>
+                    <FaUser className='text-6xl text-[#556B2F] mx-auto mb-4 opacity-50' />
+                    <h1 className='text-2xl font-bold text-[#556B2F] mb-2'>Not Logged In</h1>
+                    <p className='text-gray-600'>Please log in to view your profile.</p>
+                </div>
+            </div>
+        );
     }
 
     return (
-        <div className='min-h-[65vh]'>
-            <title>AdoptyCo | My Profile</title>
-            {
-                user ? (
-                    <div className='rounded-4xl my-[10vh] max-w-[65%] mx-auto h-[45%] bg-[#556B2Fc0] p-12 shadow-2xl shadow-[#556B2F80] flex flex-col lg:flex-row justify-around gap-3'>
-                        <div className='border-8 border-[#556B2F] p-3 w-fit rounded-full bg-[#b0bb9c] flex items-center'>
-                            <img className='w-[300px] h-[300px] mx-auto rounded-full object-cover shadow-xl shadow-[#00000040] border' src={`${user.photoURL}`} alt="Profile Picture" />
+        <div className='min-h-screen bg-linear-to-br from-[#F7F3E9] to-[#E8E0D0] py-8 px-4'>
+            <div className='max-w-4xl mx-auto'>
+                {/* Header */}
+                <div className='text-center mb-8'>
+                    <h1 className='text-4xl font-bold text-[#556B2F] mb-2'>My Profile</h1>
+                    <p className='text-gray-600'>Manage your account information and preferences</p>
+                </div>
+
+                {/* Main Profile Card */}
+                <div className='bg-white rounded-3xl shadow-2xl overflow-hidden mb-8'>
+                    {/* Cover Section */}
+                    <div className='h-32 bg-linear-to-r from-[#556B2F] to-[#6B8E23] relative'>
+                        <div className='absolute inset-0 bg-black bg-opacity-20'></div>
+                        <div className='absolute bottom-4 right-4'>
+                            {getRoleBadge(role)}
                         </div>
-                        <div className='w-full lg:w-[55%] flex flex-col justify-center items-center'>
-                            {
-                                formOpen ? (
-                                    <form className='w-full' onSubmit={handleUpdateProfileForm}>
-                                        <fieldset className="fieldset w-full space-y-3">
-                                            {/* <h3 className='font-black text-white text-2xl text-center'></h3> */}
+                    </div>
 
-                                            {/* <label className="label text-white text-lg">Email</label> */}
-                                            <input type="name" name='name' className="input w-full rounded-full p-2 px-5 text-lg" placeholder="Name" required />
-                                            <input type="photoURL" name='photoURL' className="input w-full rounded-full p-2 px-5 text-sm" placeholder="Photo URL" required />
-
-                                            <div className='flex justify-between space-x-3'>
-                                                <button
-                                                    type='submit'
-                                                    className="btn w-[60%] bg-white hover:opacity-75 shadow-none text-[#ff3600] hover:text-gray-600 py-2 px-5 rounded-full text-sm"
-                                                >Update</button>
-                                                <button
-                                                    type='button'
-                                                    onClick={() => setFormOpen(false)}
-                                                    className='btn w-[38%] bg-gray-300 hover:opacity-75 shadow-none text-[#00000090] hover:text-gray-600 py-2 px-5 rounded-full text-sm'
-                                                >Cancel</button>
-                                            </div>
-                                        </fieldset>
-                                    </form>
-                                ) : (
-                                    <div className='w-full flex flex-col items-center space-y-3'>
-                                        <h1 className='w-full rounded-t-full border- border-white text-lg text-center text-white font-light'>Name : <span className='font-black font-stretched text-4xl'>{user.displayName}</span></h1>
-                                        <h3 className='w-full p-3 px-5 border- border-white text-sm text-center text-white font-light'>Email : <span className='font-semibold font-mono text-xl'>{user.email}</span></h3>
-                                        <button
-                                            onClick={() => setFormOpen(true)}
-                                            className='border border-white bg-transparent hover:opacity-75 shadow-none text-white hover:text-gray-600 mx-6 py-1 px-5 rounded-full text-sm'>Update Profile</button>
+                    {/* Profile Content */}
+                    <div className='relative px-8 pb-8'>
+                        {/* Profile Picture */}
+                        <div className='flex justify-center -mt-16 mb-6'>
+                            <div className='relative group'>
+                                <div className='w-32 h-32 rounded-full border-4 border-white shadow-xl overflow-hidden bg-gray-100'>
+                                    {(imagePreview || user.photoURL) ? (
+                                        <img 
+                                            className='w-full h-full object-cover transition-transform duration-300 group-hover:scale-110' 
+                                            src={imagePreview || user.photoURL} 
+                                            alt="Profile"
+                                            onError={(e) => {
+                                                e.target.src = 'https://img.icons8.com/ink/96/f7f3e9/user-male-circle.png';
+                                            }}
+                                        />
+                                    ) : (
+                                        <div className='w-full h-full flex items-center justify-center'>
+                                            <FaUser className='text-4xl text-gray-400' />
+                                        </div>
+                                    )}
+                                </div>
+                                {formOpen && (
+                                    <div className='absolute inset-0 bg-black bg-opacity-50 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+                                        <FaCamera className='text-white text-xl' />
                                     </div>
-                                )
-                            }
+                                )}
+                            </div>
+                        </div>
+
+                        {/* Profile Info or Edit Form */}
+                        {formOpen ? (
+                            <form onSubmit={handleUpdateProfileForm} className='space-y-6'>
+                                <div className='grid md:grid-cols-2 gap-6'>
+                                    <div className='space-y-2'>
+                                        <label className='block text-sm font-medium text-gray-700'>
+                                            <FaUser className='inline mr-2' />
+                                            Full Name
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            value={formData.name}
+                                            onChange={handleInputChange}
+                                            className='w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#556B2F] focus:border-transparent transition-all duration-300'
+                                            placeholder="Enter your full name"
+                                            required
+                                        />
+                                    </div>
+                                    <div className='space-y-2'>
+                                        <label className='block text-sm font-medium text-gray-700'>
+                                            <FaCamera className='inline mr-2' />
+                                            Profile Photo URL
+                                        </label>
+                                        <input
+                                            type="url"
+                                            name="photoURL"
+                                            value={formData.photoURL}
+                                            onChange={handleInputChange}
+                                            className='w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#556B2F] focus:border-transparent transition-all duration-300'
+                                            placeholder="Enter photo URL"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className='flex gap-4 justify-center pt-4'>
+                                    <button
+                                        type="submit"
+                                        disabled={loading}
+                                        className='flex items-center gap-2 px-6 py-3 bg-[#556B2F] text-white rounded-xl hover:bg-[#6B8E23] transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed'
+                                    >
+                                        <FaSave />
+                                        {loading ? 'Updating...' : 'Save Changes'}
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={handleCancel}
+                                        className='flex items-center gap-2 px-6 py-3 bg-gray-500 text-white rounded-xl hover:bg-gray-600 transition-all duration-300 transform hover:scale-105'
+                                    >
+                                        <FaTimes />
+                                        Cancel
+                                    </button>
+                                </div>
+                            </form>
+                        ) : (
+                            <div className='text-center space-y-6'>
+                                {/* User Info */}
+                                <div className='space-y-4'>
+                                    <div className='flex items-center justify-center gap-2'>
+                                        <h2 className='text-3xl font-bold text-[#556B2F]'>{user.displayName || 'Anonymous User'}</h2>
+                                        {user.emailVerified && (
+                                            <MdVerified className='text-blue-500 text-xl' title='Verified Account' />
+                                        )}
+                                    </div>
+                                    
+                                    <div className='flex items-center justify-center gap-2 text-gray-600'>
+                                        <FaEnvelope />
+                                        <span className='font-mono'>{user.email}</span>
+                                    </div>
+
+                                    <div className='flex items-center justify-center gap-2 text-gray-500 text-sm'>
+                                        <FaCalendarAlt />
+                                        <span>Member since {formatDate(user.metadata?.creationTime)}</span>
+                                    </div>
+                                </div>
+
+                                {/* Action Button */}
+                                <button
+                                    onClick={() => setFormOpen(true)}
+                                    className='inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r from-[#556B2F] to-[#6B8E23] text-white rounded-xl hover:shadow-lg transition-all duration-300 transform hover:scale-105'
+                                >
+                                    <FaEdit />
+                                    Edit Profile
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+                {/* Stats Cards */}
+                <div className='grid md:grid-cols-3 gap-6 mb-8'>
+                    <div className='bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105'>
+                        <div className='flex items-center gap-4'>
+                            <div className='p-3 bg-blue-100 rounded-full'>
+                                <FaStore className='text-2xl text-blue-600' />
+                            </div>
+                            <div>
+                                <h3 className='text-2xl font-bold text-gray-800'>{stats.listings}</h3>
+                                <p className='text-gray-600'>My Listings</p>
+                            </div>
                         </div>
                     </div>
-                ) : (
-                    <div className='w-full h-[75vh] flex items-center justify-center'>
-                        <h1>You are not logged in.</h1>
+
+                    <div className='bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105'>
+                        <div className='flex items-center gap-4'>
+                            <div className='p-3 bg-green-100 rounded-full'>
+                                <FaShoppingBag className='text-2xl text-green-600' />
+                            </div>
+                            <div>
+                                <h3 className='text-2xl font-bold text-gray-800'>{stats.orders}</h3>
+                                <p className='text-gray-600'>Orders</p>
+                            </div>
+                        </div>
                     </div>
-                )
-            }
-        </div >
-    )
+
+                    <div className='bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105'>
+                        <div className='flex items-center gap-4'>
+                            <div className='p-3 bg-red-100 rounded-full'>
+                                <FaHeart className='text-2xl text-red-600' />
+                            </div>
+                            <div>
+                                <h3 className='text-2xl font-bold text-gray-800'>{stats.favorites}</h3>
+                                <p className='text-gray-600'>Favorites</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Account Security */}
+                <div className='bg-white rounded-2xl p-6 shadow-lg'>
+                    <h3 className='text-xl font-bold text-[#556B2F] mb-4 flex items-center gap-2'>
+                        <FaShieldAlt />
+                        Account Security
+                    </h3>
+                    <div className='space-y-3'>
+                        <div className='flex items-center justify-between p-3 bg-gray-50 rounded-lg'>
+                            <span className='text-gray-700'>Email Verification</span>
+                            <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                                user.emailVerified 
+                                    ? 'bg-green-100 text-green-800' 
+                                    : 'bg-yellow-100 text-yellow-800'
+                            }`}>
+                                {user.emailVerified ? 'Verified' : 'Pending'}
+                            </span>
+                        </div>
+                        <div className='flex items-center justify-between p-3 bg-gray-50 rounded-lg'>
+                            <span className='text-gray-700'>Last Sign In</span>
+                            <span className='text-gray-600 text-sm'>
+                                {formatDate(user.metadata?.lastSignInTime)}
+                            </span>
+                        </div>
+                        <div className='flex items-center justify-between p-3 bg-gray-50 rounded-lg'>
+                            <span className='text-gray-700'>Account Type</span>
+                            {getRoleBadge(role)}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default MyProfile;

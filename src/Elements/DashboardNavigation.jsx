@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router';
 import { FaShoppingBag, FaUserCog, FaStar, FaArrowLeft, FaBars, FaTimes } from "react-icons/fa";
 import { MdOutlineExitToApp, MdSpaceDashboard } from "react-icons/md";
@@ -50,11 +50,18 @@ const DashboardNavigation = ({ children }) => {
         setSidebarOpen(!sidebarOpen);
     };
 
+    // Close sidebar when clicking on navigation links (mobile)
+    const handleNavLinkClick = () => {
+        if (window.innerWidth < 1024) { // Only on mobile/tablet
+            setSidebarOpen(false);
+        }
+    };
+
     return (
         <div className="flex h-screen">
             {/* Mobile Overlay - Only show on mobile when sidebar is open */}
             {sidebarOpen && (
-                <div 
+                <div
                     className="fixed inset-0 bg-[#00000060] bg-opacity-50 z-40 lg:hidden"
                     onClick={() => setSidebarOpen(false)}
                 />
@@ -73,7 +80,6 @@ const DashboardNavigation = ({ children }) => {
                 bg-[#556B2F] text-[#F7F3E9] 
                 transition-transform duration-300 ease-in-out lg:transition-none
                 lg:rounded-3xl lg:mx-5 lg:my-5
-                flex flex-col justify-between
                 px-4 py-6
                 lg:block
             `}>
@@ -83,7 +89,7 @@ const DashboardNavigation = ({ children }) => {
                         <img className='w-8 h-8' src="/Cat-logo.png" alt="AdoptyCo" />
                         <span className='font-caveat text-xl font-bold'>AdoptyCo</span>
                     </div>
-                    <button 
+                    <button
                         onClick={() => setSidebarOpen(false)}
                         className="p-2 hover:bg-[#6B8E23] rounded-lg transition-colors"
                     >
@@ -91,75 +97,78 @@ const DashboardNavigation = ({ children }) => {
                     </button>
                 </div>
 
-                <div>
-                    {/* Back to Home Button */}
-                    <div className="mb-6">
-                        <Link to="/" className="flex lg:justify-center items-center gap-3 lg:gap-0 hover:bg-[#6B8E23] p-2 rounded-lg transition-colors">
-                            <FaArrowLeft className='text-2xl lg:text-[44px] lg:border-2 lg:border-transparent lg:hover:border-[#F7F3E9] lg:rounded-lg lg:p-2 lg:transition-all' />
-                            <span className="lg:hidden">Back to Homepage</span>
-                        </Link>
+                <div className='flex flex-col h-full'>
+                    <div className='flex-1'>
+                        <ul className='space-y-3 lg:space-y-6'>
+
+                            {/* Back to Home Button */}
+                            <li className="mb-6">
+                                <Link to="/" className="flex lg:justify-center items-center gap-3 lg:gap-0 hover:bg-[#6B8E23]/30 p-2 lg:p-3 rounded-lg transition-colors">
+                                    <FaArrowLeft className='text-2xl lg:text-4xl transition-all' />
+                                    <span className="lg:hidden">Back to Homepage</span>
+                                </Link>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to={'/dashboard/stats'}
+                                    className={({ isActive }) => `
+                                        flex lg:justify-center items-center gap-3 lg:gap-0 p-2 lg:p-3 rounded-lg transition-colors
+                                        ${isActive ? 'bg-[#6B8E23]/50' : 'hover:bg-[#6B8E23]/30'}
+                                    `}
+                                >
+                                    <MdSpaceDashboard className='text-2xl lg:text-4xl transition-all' />
+                                    <span className="lg:hidden">Dashboard</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to={'/dashboard/manage-users'}
+                                    className={({ isActive }) => `
+                                        flex lg:justify-center items-center gap-3 lg:gap-0 p-2 lg:p-3 rounded-lg transition-colors
+                                        ${isActive ? 'bg-[#6B8E23]/50' : 'hover:bg-[#6B8E23]/30'}
+                                    `}
+                                >
+                                    <FaUserCog className='text-2xl lg:text-4xl transition-all' />
+                                    <span className="lg:hidden">Manage Users</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to={'/dashboard/manage-listings'}
+                                    className={({ isActive }) => `
+                                        flex lg:justify-center items-center gap-3 lg:gap-0 p-2 lg:p-3 rounded-lg transition-colors
+                                        ${isActive ? 'bg-[#6B8E23]/50' : 'hover:bg-[#6B8E23]/30'}
+                                    `}
+                                >
+                                    <FaShop className='text-2xl lg:text-4xl transition-all' />
+                                    <span className="lg:hidden">Manage Listings</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to={'/dashboard/manage-orders'}
+                                    className={({ isActive }) => `
+                                        flex lg:justify-center items-center gap-3 lg:gap-0 p-2 lg:p-3 rounded-lg transition-colors
+                                        ${isActive ? 'bg-[#6B8E23]/50' : 'hover:bg-[#6B8E23]/30'}
+                                    `}
+                                >
+                                    <FaShoppingBag className='text-2xl lg:text-4xl transition-all' />
+                                    <span className="lg:hidden">Manage Orders</span>
+                                </NavLink>
+                            </li>
+                        </ul>
                     </div>
-                    
-                    <ul className='space-y-3 lg:space-y-6'>
-                        <li>
-                            <NavLink 
-                                to={'/dashboard/stats'} 
-                                className={({ isActive }) => `
-                                    flex lg:justify-center items-center gap-3 lg:gap-0 p-2 rounded-lg transition-colors
-                                    ${isActive ? 'bg-[#6B8E23]' : 'hover:bg-[#6B8E23]'}
-                                `}
-                            >
-                                <MdSpaceDashboard className='text-2xl lg:text-[44px] lg:border-2 lg:border-transparent lg:hover:border-[#F7F3E9] lg:rounded-lg lg:p-1 lg:transition-all' />
-                                <span className="lg:hidden">Dashboard</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink 
-                                to={'/dashboard/manage-users'} 
-                                className={({ isActive }) => `
-                                    flex lg:justify-center items-center gap-3 lg:gap-0 p-2 rounded-lg transition-colors
-                                    ${isActive ? 'bg-[#6B8E23]' : 'hover:bg-[#6B8E23]'}
-                                `}
-                            >
-                                <FaUserCog className='text-2xl lg:text-[44px] lg:border-2 lg:border-transparent lg:hover:border-[#F7F3E9] lg:rounded-lg lg:p-1 lg:transition-all' />
-                                <span className="lg:hidden">Manage Users</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink 
-                                to={'/dashboard/manage-listings'} 
-                                className={({ isActive }) => `
-                                    flex lg:justify-center items-center gap-3 lg:gap-0 p-2 rounded-lg transition-colors
-                                    ${isActive ? 'bg-[#6B8E23]' : 'hover:bg-[#6B8E23]'}
-                                `}
-                            >
-                                <FaShop className='text-2xl lg:text-[44px] lg:border-2 lg:border-transparent lg:hover:border-[#F7F3E9] lg:rounded-lg lg:p-1 lg:transition-all' />
-                                <span className="lg:hidden">Manage Listings</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink 
-                                to={'/dashboard/manage-orders'} 
-                                className={({ isActive }) => `
-                                    flex lg:justify-center items-center gap-3 lg:gap-0 p-2 rounded-lg transition-colors
-                                    ${isActive ? 'bg-[#6B8E23]' : 'hover:bg-[#6B8E23]'}
-                                `}
-                            >
-                                <FaShoppingBag className='text-2xl lg:text-[44px] lg:border-2 lg:border-transparent lg:hover:border-[#F7F3E9] lg:rounded-lg lg:p-1 lg:transition-all' />
-                                <span className="lg:hidden">Manage Orders</span>
-                            </NavLink>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div className='flex lg:justify-center'>
-                    <button 
-                        onClick={() => logOut()} 
-                        className="flex lg:justify-center items-center gap-3 lg:gap-0 hover:bg-[#6B8E23] p-2 rounded-lg transition-colors w-full lg:w-auto"
-                    >
-                        <MdOutlineExitToApp className='text-2xl lg:text-[44px] rotate-180' />
-                        <span className="lg:hidden">Logout</span>
-                    </button>
+
+                    {/* Logout button at the bottom */}
+                    <div className='flex lg:justify-center mt-auto'>
+                        <button
+                            onClick={() => logOut()}
+                            className="flex lg:justify-center items-center gap-3 lg:gap-0 hover:bg-[#6B8E23]/30 p-2 lg:p-3 rounded-lg transition-colors w-full lg:w-auto"
+                        >
+                            <MdOutlineExitToApp className='text-2xl lg:text-4xl rotate-180' />
+                            <span className="lg:hidden">Logout</span>
+                        </button>
+                    </div>
                 </div>
             </aside>
 
@@ -168,14 +177,25 @@ const DashboardNavigation = ({ children }) => {
                 {/* Mobile/Desktop Navbar */}
                 <nav className='p-3 lg:p-3 flex justify-between items-start'>
                     <div className="flex items-center gap-3">
-                        {/* Mobile Menu Button */}
+                        {/* Mobile Menu Button - Animated Hamburger */}
                         <button
                             onClick={toggleSidebar}
-                            className="lg:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                            className="lg:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-all duration-300 relative group"
+                            aria-label="Toggle menu"
                         >
-                            <FaBars className={`text-xl ${darkTheme ? 'text-[#F7F3E9]' : 'text-[#556B2F]'}`} />
+                            <div className="w-6 h-6 flex flex-col justify-center items-center">
+                                <span className={`block h-0.5 w-6 bg-current transform transition-all duration-300 ${
+                                    sidebarOpen ? 'rotate-45 translate-y-1.5' : ''
+                                } ${darkTheme ? 'bg-[#F7F3E9]' : 'bg-[#556B2F]'}`}></span>
+                                <span className={`block h-0.5 w-6 bg-current transform transition-all duration-300 mt-1 ${
+                                    sidebarOpen ? 'opacity-0' : ''
+                                } ${darkTheme ? 'bg-[#F7F3E9]' : 'bg-[#556B2F]'}`}></span>
+                                <span className={`block h-0.5 w-6 bg-current transform transition-all duration-300 mt-1 ${
+                                    sidebarOpen ? '-rotate-45 -translate-y-1.5' : ''
+                                } ${darkTheme ? 'bg-[#F7F3E9]' : 'bg-[#556B2F]'}`}></span>
+                            </div>
                         </button>
-                        
+
                         <div className={`flex flex-col ${darkTheme ? 'text-[#F7F3E9]' : 'text-[#556B2F]'}`}>
                             <div className="flex items-center gap-2 lg:gap-3">
                                 <span className="text-xs font-medium opacity-60 uppercase tracking-wider">
@@ -184,12 +204,12 @@ const DashboardNavigation = ({ children }) => {
                                 <span className="w-1 h-1 bg-current opacity-40 rounded-full hidden sm:block"></span>
                                 <span className="text-xs opacity-60 hidden sm:block">{dateFull}</span>
                             </div>
-                            <h1 className='ml-0 font-bold text-xl sm:text-2xl lg:text-3xl mt-1 bg-gradient-to-r from-[#556B2F] to-[#6B8E23] bg-clip-text text-transparent'>
+                            <h1 className='ml-0 font-bold text-xl sm:text-2xl lg:text-3xl mt-1 bg-linear-to-r from-[#556B2F] to-[#6B8E23] bg-clip-text text-transparent'>
                                 {getPageTitle()}
                             </h1>
                         </div>
                     </div>
-                    
+
                     <div className='flex items-center gap-2 lg:gap-4'>
                         <button
                             className={`${darkTheme ? 'text-[#F7F3E9]' : 'text-[#556B2F]'} text-lg lg:text-xl xl:text-4xl cursor-pointer hover:scale-110 transition-transform`}
@@ -198,7 +218,7 @@ const DashboardNavigation = ({ children }) => {
                         >
                             {darkTheme ? <FaCloudMoon /> : <FaCloudSun />}
                         </button>
-                        
+
                         {/* Review Button - Hidden on small screens */}
                         <button
                             className={`${darkTheme ? 'text-[#F7F3E9] hover:bg-gray-700' : 'text-[#556B2F] hover:bg-gray-100'} p-2 rounded-lg transition-all items-center gap-2 hidden md:flex`}
@@ -207,7 +227,7 @@ const DashboardNavigation = ({ children }) => {
                             <FaStar className="text-lg lg:text-xl xl:text-2xl" />
                             <span className="hidden lg:inline text-sm font-medium">Reviews</span>
                         </button>
-                        
+
                         <div className="dropdown">
                             <div tabIndex={0} role="button">
                                 {user.photoURL ? (

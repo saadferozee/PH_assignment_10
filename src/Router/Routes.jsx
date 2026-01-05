@@ -19,6 +19,8 @@ import AdminDashboard from '../Pages/AdminDashboard';
 import ManageUser from '../Pages/ManageUser';
 import ManageListings from '../Pages/ManageListings';
 import ManageOrders from '../Pages/ManageOrders';
+import PrivacyPolicy from '../Pages/PrivacyPolicy';
+import TermsConditions from '../Pages/TermsConditions';
 import ErrorBoundary from '../Components/ErrorBoundary';
 
 const router = createBrowserRouter([
@@ -37,7 +39,9 @@ const router = createBrowserRouter([
             { path: '/my-listings', element: <PrivateRoute authorization={'all-users'}><MyListings></MyListings></PrivateRoute> },
             { path: '/update-listing/:id', element: <PrivateRoute authorization={'all-users'}><UpdateListing></UpdateListing></PrivateRoute> },
             { path: '/my-orders', element: <PrivateRoute authorization={'all-users'}><MyOrders></MyOrders></PrivateRoute> },
-            { path: '/my-profile', element: <PrivateRoute authorization={'all-users'}><MyProfile></MyProfile></PrivateRoute> }
+            { path: '/my-profile', element: <PrivateRoute authorization={'all-users'}><MyProfile></MyProfile></PrivateRoute> },
+            { path: '/privacy-policy', Component: PrivacyPolicy },
+            { path: '/terms-conditions', Component: TermsConditions }
         ]
     },
     {

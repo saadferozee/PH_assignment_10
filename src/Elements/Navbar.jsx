@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import AuthContext from '../Contexts/AuthContext';
-import { FaCloudMoon, FaCloudSun } from "react-icons/fa";
+import { FaCloudMoon, FaCloudSun, FaTachometerAlt } from "react-icons/fa";
 import { HiMenuAlt2 } from "react-icons/hi";
 import ReactTooltip from './ReactTooltip';
 
 
 const Navbar = () => {
 
-    const { user, logOut } = useContext(AuthContext);
+    const { user, role, logOut } = useContext(AuthContext);
     const [darkTheme, setDarkTheme] = useState(false);
 
     useEffect(() => {
@@ -42,8 +42,8 @@ const Navbar = () => {
                 <div className='dropdown flex items-center'>
                     <a tabIndex={0} role='button' className='px-3 pt-0.5 pb-0.75 rounded-full border border-transparent'>Policies</a>
                     <ul tabIndex={-1} className="menu dropdown-content top-10 bg-[#556B2F40] rounded z-1 mt-3 w-fit p-2 shadow space-y-1.5">
-                        <NavLink className="px-4 pt-0.5 pb-0.75 rounded-full bg-[#F7F3E9] text-[#556B2F] cursor-pointer">Terms</NavLink>
-                        <NavLink className="px-4 pt-0.5 pb-0.75 rounded-full bg-[#F7F3E9] text-[#556B2F] cursor-pointer">Privacy</NavLink>
+                        <NavLink to="/privacy-policy" className="px-4 pt-0.5 pb-0.75 rounded-full bg-[#F7F3E9] text-[#556B2F] cursor-pointer">Privacy</NavLink>
+                        <NavLink to="/terms-conditions" className="px-4 pt-0.5 pb-0.75 rounded-full bg-[#F7F3E9] text-[#556B2F] cursor-pointer">Terms</NavLink>
                     </ul>
                 </div>
             )
@@ -58,9 +58,20 @@ const Navbar = () => {
                     <NavLink className='px-3 pt-0.5 pb-0.75 rounded-full border border-transparent' to={'/add-listing'}>Add Listing</NavLink>
                     <NavLink className='px-3 pt-0.5 pb-0.75 rounded-full border border-transparent' to={'/my-listings'}>My Listings</NavLink>
                     <NavLink className='px-3 pt-0.5 pb-0.75 rounded-full border border-transparent' to={'/my-orders'}>My Orders</NavLink>
+                    {role === 'admin' && (
+                        <NavLink className='px-3 pt-0.5 pb-0.75 rounded-full border border-transparent bg-[#9ACD32] text-[#556B2F] font-semibold' to={'/dashboard/stats'}>
+                            Dashboard
+                        </NavLink>
+                    )}
                 </>
             )
         }
+        {!user && (
+            <>
+                <NavLink to="/privacy-policy" className="px-3 pt-0.5 pb-0.75 rounded-full border border-transparent">Privacy Policy</NavLink>
+                <NavLink to="/terms-conditions" className="px-3 pt-0.5 pb-0.75 rounded-full border border-transparent">Terms & Conditions</NavLink>
+            </>
+        )}
     </>
 
     return (
@@ -96,6 +107,17 @@ const Navbar = () => {
                     </div>
                     <div className="navbar-end flex items-center gap-4">
                         <button className='text-white text-xl md:text-4xl te0t-[#F703E9] cursor-pointer' title='Click to change theme.' onClick={() => setDarkTheme(!darkTheme)}>{darkTheme ? <FaCloudMoon /> : <FaCloudSun />}</button>
+                        
+                        {/* Dashboard Button for Admins */}
+                        {user && role === 'admin' && (
+                            <ReactTooltip id='dashboard' content={'Go to Admin Dashboard'} place={'bottom'}>
+                                <Link to='/dashboard/stats' className="flex items-center gap-2 px-3 py-2 bg-[#9ACD32] text-[#556B2F] rounded-full hover:bg-[#F7F3E9] transition-colors font-semibold text-sm">
+                                    <FaTachometerAlt />
+                                    <span className="hidden md:inline">Dashboard</span>
+                                </Link>
+                            </ReactTooltip>
+                        )}
+                        
                         {
                             user ? (
                                 <div className='flex items-center gap-2'>
@@ -110,7 +132,7 @@ const Navbar = () => {
                                             }
                                         </div>
                                         <ul tabIndex={-1} className="menu dropdown-content right-1 bg-[#556B2F40] rounded z-1 mt-3 w-fit p-2 shadow space-y-1.5">
-                                            <ReactTooltip id='logout' content={'Click to see profile'} place={'bottom-end'}>
+                                            <ReactTooltip id='profile' content={'Click to see profile'} place={'bottom-end'}>
                                                 <button className="px-4 pt-0.5 pb-0.75 rounded-full bg-[#F7F3E9] text-[#556B2F] cursor-pointer"><a href="/my-profile">Profile</a></button>
                                             </ReactTooltip>
                                             <ReactTooltip id='logout' content={'Click to LogOut'} place={'bottom-end'}>

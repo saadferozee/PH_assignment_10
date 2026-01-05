@@ -1,5 +1,3 @@
-# Assignment 10
-
 # AdoptyCo – Pet Adoption & Supplies Marketplace
 
 A comprehensive platform for adopting pets and purchasing pet supplies, built with modern web technologies. This project includes both client and server sides, fully functional with CRUD operations, authentication, and deployment-ready setup.
